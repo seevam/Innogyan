@@ -394,6 +394,439 @@
             text-shadow: 0 0 10px rgba(255, 0, 255, 0.3);
         }
 
+                /* A Peek Inside The Box Section */
+        .peek-inside-box {
+            background: linear-gradient(135deg, #f8fafc 0%, #e2e8f0 100%);
+            position: relative;
+            overflow: hidden;
+            padding: 100px 0;
+        }
+        
+        .peek-inside-box::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><defs><pattern id="boxGrid" width="25" height="25" patternUnits="userSpaceOnUse"><path d="M 25 0 L 0 0 0 25" fill="none" stroke="rgba(99,102,241,0.05)" stroke-width="0.5"/></pattern></defs><rect width="100" height="100" fill="url(%23boxGrid)"/></svg>');
+            opacity: 0.4;
+        }
+        
+        .peek-inside-box .section-title {
+            color: #1e293b;
+            margin-bottom: 20px;
+        }
+        
+        .peek-inside-box .section-subtitle {
+            color: #64748b;
+            margin-bottom: 60px;
+        }
+        
+        /* Box Category Navigation */
+        .box-category-nav {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+            margin-bottom: 60px;
+            flex-wrap: wrap;
+            position: relative;
+            z-index: 2;
+        }
+        
+        .box-category-btn {
+            background: rgba(255, 255, 255, 0.8);
+            border: 2px solid transparent;
+            border-radius: 25px;
+            padding: 12px 24px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            position: relative;
+            color: #64748b;
+            font-weight: 600;
+            font-size: 14px;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            backdrop-filter: blur(10px);
+        }
+        
+        .box-category-btn:hover {
+            background: rgba(255, 255, 255, 0.9);
+            transform: translateY(-2px);
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.1);
+        }
+        
+        .box-category-btn.active {
+            background: rgba(99, 102, 241, 0.1);
+            border-color: #6366f1;
+            color: #6366f1;
+            box-shadow: 0 5px 25px rgba(99, 102, 241, 0.2);
+        }
+        
+        .box-category-indicator {
+            position: absolute;
+            bottom: -8px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 8px;
+            height: 8px;
+            border-radius: 50%;
+            background: #6366f1;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+        
+        .box-category-btn.active .box-category-indicator {
+            opacity: 1;
+            box-shadow: 0 0 15px rgba(99, 102, 241, 0.6);
+        }
+        
+        /* Box Content */
+        .box-content-container {
+            position: relative;
+            max-width: 1200px;
+            margin: 0 auto;
+            height: 500px;
+            overflow: hidden;
+            border-radius: 30px;
+            box-shadow: 0 25px 80px rgba(0, 0, 0, 0.15);
+        }
+        
+        .box-slides {
+            position: relative;
+            width: 100%;
+            height: 100%;
+        }
+        
+        .box-slide {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            opacity: 0.5;
+            transform: scale(0.95);
+            transition: all 0.8s cubic-bezier(0.4, 0, 0.2, 1);
+            pointer-events: none;
+        }
+        
+        .box-slide.active {
+            opacity: 1;
+            transform: scale(1);
+            pointer-events: all;
+            z-index: 2;
+        }
+        
+        .box-background {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            border-radius: 30px;
+        }
+        
+        .stem-bg { background: linear-gradient(135deg, #ff6b35 0%, #f7931e 100%); }
+        .creative-bg { background: linear-gradient(135deg, #4285f4 0%, #34a853 100%); }
+        .tech-bg { background: linear-gradient(135deg, #34a853 0%, #0f9d58 100%); }
+        .science-bg { background: linear-gradient(135deg, #fbbc05 0%, #ea4335 100%); }
+        .engineer-bg { background: linear-gradient(135deg, #9c27b0 0%, #673ab7 100%); }
+        
+        .box-content {
+            position: relative;
+            z-index: 2;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            height: 100%;
+            align-items: center;
+            padding: 50px;
+            gap: 50px;
+        }
+        
+        .box-left {
+            color: white;
+            display: flex;
+            flex-direction: column;
+            gap: 25px;
+        }
+        
+        .box-header h3 {
+            font-size: clamp(28px, 4vw, 36px);
+            font-weight: 800;
+            margin: 0 0 10px 0;
+            text-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
+        }
+        
+        .box-description {
+            font-size: clamp(16px, 3vw, 18px);
+            opacity: 0.9;
+            line-height: 1.5;
+            margin: 0;
+        }
+        
+        .box-features {
+            display: flex;
+            gap: 12px;
+            flex-wrap: wrap;
+        }
+        
+        .feature-tag {
+            background: rgba(255, 255, 255, 0.2);
+            border: 1px solid rgba(255, 255, 255, 0.3);
+            padding: 8px 16px;
+            border-radius: 20px;
+            font-size: 13px;
+            font-weight: 600;
+            backdrop-filter: blur(10px);
+        }
+        
+        .box-learn-more {
+            background: rgba(255, 255, 255, 0.9);
+            color: #1e293b;
+            border: none;
+            padding: 14px 28px;
+            border-radius: 25px;
+            font-weight: 700;
+            font-size: 16px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            width: fit-content;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+        
+        .box-learn-more:hover {
+            background: white;
+            transform: translateY(-2px);
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.2);
+        }
+        
+        .box-projects h4 {
+            font-size: 18px;
+            margin: 0 0 15px 0;
+            font-weight: 700;
+        }
+        
+        .projects-list {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+        
+        .projects-list li {
+            font-size: 15px;
+            opacity: 0.9;
+            margin-bottom: 8px;
+            padding-left: 5px;
+        }
+        
+        .box-right {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        
+        .box-image {
+            position: relative;
+            width: 350px;
+            height: 350px;
+        }
+        
+        .floating-icons {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 2;
+        }
+        
+        .float-icon {
+            position: absolute;
+            font-size: 28px;
+            animation: boxFloat 4s ease-in-out infinite;
+            filter: drop-shadow(0 0 10px rgba(255, 255, 255, 0.5));
+        }
+        
+        .float-icon:nth-child(1) {
+            top: 15%;
+            left: 15%;
+            animation-delay: 0s;
+        }
+        
+        .float-icon:nth-child(2) {
+            top: 20%;
+            right: 15%;
+            animation-delay: 1.3s;
+        }
+        
+        .float-icon:nth-child(3) {
+            bottom: 25%;
+            left: 20%;
+            animation-delay: 2.6s;
+        }
+        
+        @keyframes boxFloat {
+            0%, 100% { transform: translateY(0px) rotate(0deg) scale(1); }
+            33% { transform: translateY(-15px) rotate(5deg) scale(1.1); }
+            66% { transform: translateY(-5px) rotate(-3deg) scale(0.95); }
+        }
+        
+        .main-image {
+            width: 100%;
+            height: 100%;
+            border-radius: 25px;
+            background: rgba(255, 255, 255, 0.15);
+            backdrop-filter: blur(20px);
+            border: 3px solid rgba(255, 255, 255, 0.2);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            overflow: hidden;
+            transition: all 0.4s ease;
+            cursor: pointer;
+        }
+        
+        .main-image:hover {
+            transform: scale(1.05) rotate(2deg);
+            box-shadow: 0 20px 50px rgba(0, 0, 0, 0.3);
+        }
+        
+        .image-overlay {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            background: linear-gradient(transparent, rgba(0, 0, 0, 0.8));
+            color: white;
+            padding: 25px;
+            text-align: center;
+            font-weight: 700;
+            font-size: 18px;
+            transform: translateY(100%);
+            transition: transform 0.4s ease;
+        }
+        
+        .main-image:hover .image-overlay {
+            transform: translateY(0);
+        }
+        
+        .activity-indicator {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            width: 12px;
+            height: 12px;
+            background: #00ff88;
+            border-radius: 50%;
+            animation: activityPulse 2s infinite;
+        }
+        
+        @keyframes activityPulse {
+            0%, 100% { opacity: 1; transform: scale(1); }
+            50% { opacity: 0.6; transform: scale(1.3); }
+        }
+        
+        /* Box Progress Dots */
+        .box-progress-dots {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+            margin-top: 50px;
+            position: relative;
+            z-index: 2;
+        }
+        
+        .box-progress-dot {
+            width: 14px;
+            height: 14px;
+            border-radius: 50%;
+            background: rgba(99, 102, 241, 0.3);
+            border: none;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            position: relative;
+        }
+        
+        .box-progress-dot.active {
+            background: #6366f1;
+            box-shadow: 0 0 20px rgba(99, 102, 241, 0.6);
+            transform: scale(1.4);
+        }
+        
+        .box-progress-dot::before {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            width: 24px;
+            height: 24px;
+            border: 2px solid rgba(99, 102, 241, 0.3);
+            border-radius: 50%;
+            transform: translate(-50%, -50%);
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+        
+        .box-progress-dot.active::before {
+            opacity: 1;
+            animation: boxDotPulse 2s infinite;
+        }
+        
+        @keyframes boxDotPulse {
+            0%, 100% { transform: translate(-50%, -50%) scale(1); opacity: 1; }
+            50% { transform: translate(-50%, -50%) scale(1.6); opacity: 0; }
+        }
+        
+        /* Mobile Responsiveness */
+        @media (max-width: 968px) {
+            .box-category-nav {
+                gap: 10px;
+            }
+            
+            .box-category-btn {
+                padding: 10px 18px;
+                font-size: 12px;
+            }
+            
+            .box-content-container {
+                height: 600px;
+            }
+            
+            .box-content {
+                grid-template-columns: 1fr;
+                text-align: center;
+                gap: 30px;
+                padding: 40px;
+            }
+            
+            .box-image {
+                width: 280px;
+                height: 280px;
+            }
+        }
+        
+        @media (max-width: 768px) {
+            .box-content {
+                padding: 30px;
+                gap: 25px;
+            }
+            
+            .box-image {
+                width: 240px;
+                height: 240px;
+            }
+            
+            .float-icon {
+                font-size: 22px;
+            }
+            
+            .box-content-container {
+                height: 550px;
+            }
+        }
+
         /* Sample Projects */
         .projects-section {
             background: linear-gradient(135deg, #0f0f23 0%, #1a1a2e 100%);
@@ -688,6 +1121,269 @@
         </div>
     </section>
 
+    <!-- A Peek Inside The Box Section -->
+<section class="section peek-inside-box" id="peek-inside-box">
+    <div class="container">
+        <h2 class="section-title fade-in">A Peek Inside The Box ⭐</h2>
+        <p class="section-subtitle fade-in">Encouraging kids to become problem-solvers as they explore...</p>
+        
+        <!-- Category Navigation -->
+        <div class="box-category-nav fade-in">
+            <button class="box-category-btn active" data-category="stem-explorer">
+                <span class="box-category-name">STEM Explorer</span>
+                <div class="box-category-indicator"></div>
+            </button>
+            <button class="box-category-btn" data-category="creative-builder">
+                <span class="box-category-name">Creative Builder</span>
+                <div class="box-category-indicator"></div>
+            </button>
+            <button class="box-category-btn" data-category="tech-innovator">
+                <span class="box-category-name">Tech Innovator</span>
+                <div class="box-category-indicator"></div>
+            </button>
+            <button class="box-category-btn" data-category="science-lab">
+                <span class="box-category-name">Science Lab</span>
+                <div class="box-category-indicator"></div>
+            </button>
+            <button class="box-category-btn" data-category="future-engineer">
+                <span class="box-category-name">Future Engineer</span>
+                <div class="box-category-indicator"></div>
+            </button>
+        </div>
+
+        <!-- Box Content Slides -->
+        <div class="box-content-container">
+            <div class="box-slides">
+                
+                <!-- STEM Explorer Box -->
+                <div class="box-slide active" data-category="stem-explorer">
+                    <div class="box-background stem-bg"></div>
+                    <div class="box-content">
+                        <div class="box-left">
+                            <div class="box-header">
+                                <h3>Interactive Game Board</h3>
+                                <p class="box-description">Press to place the marble on the board!</p>
+                            </div>
+                            <div class="box-features">
+                                <div class="feature-tag">Ages 5+</div>
+                                <div class="feature-tag">Strategic Thinking</div>
+                                <div class="feature-tag">Hand-Eye Coordination</div>
+                            </div>
+                            <button class="box-learn-more">Learn More</button>
+                            <div class="box-projects">
+                                <h4>What's Inside:</h4>
+                                <ul class="projects-list">
+                                    <li>• Build a mini sailboat</li>
+                                    <li>• Create a robotic hand</li>
+                                    <li>• Assemble a wind-powered car</li>
+                                    <li>• Experiment with simple circuits</li>
+                                </ul>
+                            </div>
+                        </div>
+                        <div class="box-right">
+                            <div class="box-image">
+                                <div class="floating-icons">
+                                    <div class="float-icon">⚙️</div>
+                                    <div class="float-icon">🔧</div>
+                                    <div class="float-icon">🧩</div>
+                                </div>
+                                <div class="main-image stem-image">
+                                    <div class="image-overlay">
+                                        <span>Interactive Learning</span>
+                                    </div>
+                                </div>
+                                <div class="activity-indicator"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Creative Builder Box -->
+                <div class="box-slide" data-category="creative-builder">
+                    <div class="box-background creative-bg"></div>
+                    <div class="box-content">
+                        <div class="box-left">
+                            <div class="box-header">
+                                <h3>Creative Construction Kit</h3>
+                                <p class="box-description">Build amazing structures with your imagination!</p>
+                            </div>
+                            <div class="box-features">
+                                <div class="feature-tag">Ages 6+</div>
+                                <div class="feature-tag">Creative Design</div>
+                                <div class="feature-tag">Spatial Reasoning</div>
+                            </div>
+                            <button class="box-learn-more">Learn More</button>
+                            <div class="box-projects">
+                                <h4>What's Inside:</h4>
+                                <ul class="projects-list">
+                                    <li>• Design a dream house</li>
+                                    <li>• Build a suspension bridge</li>
+                                    <li>• Create moving sculptures</li>
+                                    <li>• Construct a marble run</li>
+                                </ul>
+                            </div>
+                        </div>
+                        <div class="box-right">
+                            <div class="box-image">
+                                <div class="floating-icons">
+                                    <div class="float-icon">🏗️</div>
+                                    <div class="float-icon">🎨</div>
+                                    <div class="float-icon">📐</div>
+                                </div>
+                                <div class="main-image creative-image">
+                                    <div class="image-overlay">
+                                        <span>Creative Building</span>
+                                    </div>
+                                </div>
+                                <div class="activity-indicator"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Tech Innovator Box -->
+                <div class="box-slide" data-category="tech-innovator">
+                    <div class="box-background tech-bg"></div>
+                    <div class="box-content">
+                        <div class="box-left">
+                            <div class="box-header">
+                                <h3>Tech Innovation Lab</h3>
+                                <p class="box-description">Code, create, and innovate with technology!</p>
+                            </div>
+                            <div class="box-features">
+                                <div class="feature-tag">Ages 8+</div>
+                                <div class="feature-tag">Programming</div>
+                                <div class="feature-tag">Digital Literacy</div>
+                            </div>
+                            <button class="box-learn-more">Learn More</button>
+                            <div class="box-projects">
+                                <h4>What's Inside:</h4>
+                                <ul class="projects-list">
+                                    <li>• Program a smart alarm</li>
+                                    <li>• Create digital animations</li>
+                                    <li>• Build a weather station</li>
+                                    <li>• Design mobile apps</li>
+                                </ul>
+                            </div>
+                        </div>
+                        <div class="box-right">
+                            <div class="box-image">
+                                <div class="floating-icons">
+                                    <div class="float-icon">💻</div>
+                                    <div class="float-icon">📱</div>
+                                    <div class="float-icon">🤖</div>
+                                </div>
+                                <div class="main-image tech-image">
+                                    <div class="image-overlay">
+                                        <span>Tech Innovation</span>
+                                    </div>
+                                </div>
+                                <div class="activity-indicator"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Science Lab Box -->
+                <div class="box-slide" data-category="science-lab">
+                    <div class="box-background science-bg"></div>
+                    <div class="box-content">
+                        <div class="box-left">
+                            <div class="box-header">
+                                <h3>Science Discovery Lab</h3>
+                                <p class="box-description">Explore the wonders of science through experiments!</p>
+                            </div>
+                            <div class="box-features">
+                                <div class="feature-tag">Ages 7+</div>
+                                <div class="feature-tag">Scientific Method</div>
+                                <div class="feature-tag">Observation Skills</div>
+                            </div>
+                            <button class="box-learn-more">Learn More</button>
+                            <div class="box-projects">
+                                <h4>What's Inside:</h4>
+                                <ul class="projects-list">
+                                    <li>• Grow crystal gardens</li>
+                                    <li>• Create volcano eruptions</li>
+                                    <li>• Mix color-changing slime</li>
+                                    <li>• Build solar ovens</li>
+                                </ul>
+                            </div>
+                        </div>
+                        <div class="box-right">
+                            <div class="box-image">
+                                <div class="floating-icons">
+                                    <div class="float-icon">🔬</div>
+                                    <div class="float-icon">⚗️</div>
+                                    <div class="float-icon">🧪</div>
+                                </div>
+                                <div class="main-image science-image">
+                                    <div class="image-overlay">
+                                        <span>Science Experiments</span>
+                                    </div>
+                                </div>
+                                <div class="activity-indicator"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Future Engineer Box -->
+                <div class="box-slide" data-category="future-engineer">
+                    <div class="box-background engineer-bg"></div>
+                    <div class="box-content">
+                        <div class="box-left">
+                            <div class="box-header">
+                                <h3>Engineering Challenge Kit</h3>
+                                <p class="box-description">Solve real-world problems through engineering!</p>
+                            </div>
+                            <div class="box-features">
+                                <div class="feature-tag">Ages 9+</div>
+                                <div class="feature-tag">Problem Solving</div>
+                                <div class="feature-tag">Engineering Design</div>
+                            </div>
+                            <button class="box-learn-more">Learn More</button>
+                            <div class="box-projects">
+                                <h4>What's Inside:</h4>
+                                <ul class="projects-list">
+                                    <li>• Design earthquake-proof towers</li>
+                                    <li>• Build water filtration systems</li>
+                                    <li>• Create renewable energy models</li>
+                                    <li>• Engineer robotic prosthetics</li>
+                                </ul>
+                            </div>
+                        </div>
+                        <div class="box-right">
+                            <div class="box-image">
+                                <div class="floating-icons">
+                                    <div class="float-icon">🏭</div>
+                                    <div class="float-icon">⚡</div>
+                                    <div class="float-icon">🌱</div>
+                                </div>
+                                <div class="main-image engineer-image">
+                                    <div class="image-overlay">
+                                        <span>Future Engineering</span>
+                                    </div>
+                                </div>
+                                <div class="activity-indicator"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+
+        <!-- Progress Dots -->
+        <div class="box-progress-dots">
+            <button class="box-progress-dot active" data-category="stem-explorer"></button>
+            <button class="box-progress-dot" data-category="creative-builder"></button>
+            <button class="box-progress-dot" data-category="tech-innovator"></button>
+            <button class="box-progress-dot" data-category="science-lab"></button>
+            <button class="box-progress-dot" data-category="future-engineer"></button>
+        </div>
+    </div>
+</section>
+
     <!-- Sample Projects Preview -->
     <section class="section projects-section" id="projects">
         <div class="container">
@@ -980,6 +1676,69 @@
                 ticking = true;
             }
         });
+
+                // A Peek Inside The Box Section Functionality
+        const boxCategoryBtns = document.querySelectorAll('.box-category-btn');
+        const boxSlides = document.querySelectorAll('.box-slide');
+        const boxProgressDots = document.querySelectorAll('.box-progress-dot');
+        let currentBoxCategory = 0;
+        const boxCategories = ['stem-explorer', 'creative-builder', 'tech-innovator', 'science-lab', 'future-engineer'];
+        let boxAutoSlideInterval;
+        
+        function showBoxCategory(index) {
+            // Remove active class from all elements
+            boxCategoryBtns.forEach(btn => btn.classList.remove('active'));
+            boxSlides.forEach(slide => slide.classList.remove('active'));
+            boxProgressDots.forEach(dot => dot.classList.remove('active'));
+        
+            // Add active class to current elements
+            boxCategoryBtns[index].classList.add('active');
+            boxSlides[index].classList.add('active');
+            boxProgressDots[index].classList.add('active');
+        
+            currentBoxCategory = index;
+        }
+        
+        function nextBoxCategory() {
+            currentBoxCategory = (currentBoxCategory + 1) % boxCategories.length;
+            showBoxCategory(currentBoxCategory);
+        }
+        
+        function startBoxAutoSlide() {
+            boxAutoSlideInterval = setInterval(nextBoxCategory, 5000);
+        }
+        
+        function stopBoxAutoSlide() {
+            clearInterval(boxAutoSlideInterval);
+        }
+        
+        // Box category button click handlers
+        boxCategoryBtns.forEach((btn, index) => {
+            btn.addEventListener('click', () => {
+                showBoxCategory(index);
+                stopBoxAutoSlide();
+                setTimeout(startBoxAutoSlide, 3000);
+            });
+        });
+        
+        // Box progress dot click handlers
+        boxProgressDots.forEach((dot, index) => {
+            dot.addEventListener('click', () => {
+                showBoxCategory(index);
+                stopBoxAutoSlide();
+                setTimeout(startBoxAutoSlide, 3000);
+            });
+        });
+        
+        // Pause box auto-slide on hover
+        const boxSection = document.querySelector('.peek-inside-box');
+        if (boxSection) {
+            boxSection.addEventListener('mouseenter', stopBoxAutoSlide);
+            boxSection.addEventListener('mouseleave', startBoxAutoSlide);
+        }
+        
+        // Start box auto-slide
+        startBoxAutoSlide();
     </script>
 </body>
 </html>
