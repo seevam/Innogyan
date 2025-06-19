@@ -1,0 +1,1117 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Innoyan Garage - Build Ventures Before You Graduate</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+            line-height: 1.6;
+            color: #1a1a1a;
+            overflow-x: hidden;
+            background: #0a0a0a;
+        }
+
+        /* Header */
+        .header {
+            background: rgba(0, 0, 0, 0.95);
+            backdrop-filter: blur(20px);
+            padding: 15px 0;
+            position: fixed;
+            top: 0;
+            width: 100%;
+            z-index: 1000;
+            border-bottom: 1px solid rgba(255, 165, 0, 0.3);
+        }
+
+        .nav-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-size: 24px;
+            font-weight: 800;
+            color: #ffa500;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            text-shadow: 0 0 10px rgba(255, 165, 0, 0.5);
+            text-decoration: none;
+        }
+
+        .rocket {
+            font-size: 28px;
+            animation: rocket-bounce 2s infinite;
+            filter: drop-shadow(0 0 5px #ffa500);
+        }
+
+        @keyframes rocket-bounce {
+            0%, 100% { transform: translateY(0) rotate(0deg); }
+            50% { transform: translateY(-5px) rotate(2deg); }
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 30px;
+        }
+
+        .nav-links a {
+            color: #ffffff;
+            text-decoration: none;
+            font-weight: 500;
+            transition: all 0.3s;
+            padding: 8px 16px;
+            border-radius: 20px;
+        }
+
+        .nav-links a:hover {
+            color: #ffa500;
+            background: rgba(255, 165, 0, 0.1);
+            text-shadow: 0 0 5px rgba(255, 165, 0, 0.5);
+        }
+
+        /* Hero Section */
+        .hero {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            background: linear-gradient(135deg, #0a0a0a 0%, #2a1810 50%, #1a0f0a 100%);
+            position: relative;
+            overflow: hidden;
+            padding-top: 80px;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 1000"><defs><radialGradient id="grad1"><stop offset="0%" stop-color="rgba(255,165,0,0.2)"/><stop offset="100%" stop-color="rgba(255,165,0,0)"/></radialGradient><radialGradient id="grad2"><stop offset="0%" stop-color="rgba(255,69,0,0.1)"/><stop offset="100%" stop-color="rgba(255,69,0,0)"/></radialGradient></defs><circle cx="200" cy="200" r="3" fill="url(%23grad1)"/><circle cx="800" cy="300" r="2" fill="url(%23grad2)"/><circle cx="300" cy="700" r="4" fill="url(%23grad1)"/><circle cx="700" cy="800" r="2" fill="url(%23grad2)"/></svg>');
+            animation: float 20s infinite linear;
+        }
+
+        .hero::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(45deg, transparent 30%, rgba(255, 165, 0, 0.05) 50%, transparent 70%);
+            animation: scan 8s infinite;
+        }
+
+        @keyframes scan {
+            0% { transform: translateX(-100%); }
+            100% { transform: translateX(100%); }
+        }
+
+        @keyframes float {
+            0% { transform: translateY(0px) translateX(0px); }
+            25% { transform: translateY(-20px) translateX(10px); }
+            50% { transform: translateY(-10px) translateX(-5px); }
+            75% { transform: translateY(-25px) translateX(8px); }
+            100% { transform: translateY(0px) translateX(0px); }
+        }
+
+        .hero-content {
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 0 20px;
+            position: relative;
+            z-index: 2;
+        }
+
+        .hero h1 {
+            font-size: clamp(42px, 8vw, 72px);
+            font-weight: 900;
+            color: #ffffff;
+            margin-bottom: 25px;
+            line-height: 1.1;
+            text-shadow: 0 0 30px rgba(255, 165, 0, 0.4);
+            background: linear-gradient(45deg, #ffffff, #ffa500, #ff4500);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .hero-subtitle {
+            font-size: clamp(18px, 4vw, 24px);
+            color: rgba(255, 255, 255, 0.9);
+            margin-bottom: 40px;
+            line-height: 1.6;
+            max-width: 700px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .hero-cta {
+            display: inline-block;
+            background: linear-gradient(45deg, #ffa500, #ff4500);
+            color: #000;
+            padding: 22px 50px;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: 700;
+            font-size: clamp(16px, 3vw, 20px);
+            transition: all 0.3s;
+            box-shadow: 0 10px 30px rgba(255, 165, 0, 0.4);
+            position: relative;
+            overflow: hidden;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .hero-cta::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.3), transparent);
+            transition: left 0.5s;
+        }
+
+        .hero-cta:hover::before {
+            left: 100%;
+        }
+
+        .hero-cta:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 15px 40px rgba(255, 165, 0, 0.5);
+        }
+
+        /* Section Styles */
+        .section {
+            padding: 100px 0;
+            position: relative;
+        }
+
+        @media (max-width: 768px) {
+            .section {
+                padding: 60px 0;
+            }
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        .section-title {
+            font-size: clamp(32px, 6vw, 48px);
+            font-weight: 800;
+            text-align: center;
+            margin-bottom: 20px;
+            color: #ffa500;
+            text-shadow: 0 0 20px rgba(255, 165, 0, 0.5);
+        }
+
+        .section-subtitle {
+            font-size: clamp(16px, 4vw, 20px);
+            text-align: center;
+            color: rgba(255, 255, 255, 0.8);
+            margin-bottom: 60px;
+            max-width: 800px;
+            margin-left: auto;
+            margin-right: auto;
+            line-height: 1.6;
+        }
+
+        /* What Students Do Section */
+        .activities-section {
+            background: linear-gradient(135deg, #1a0f0a 0%, #2a1810 100%);
+            position: relative;
+        }
+
+        .activities-section::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><defs><pattern id="grid" width="15" height="15" patternUnits="userSpaceOnUse"><path d="M 15 0 L 0 0 0 15" fill="none" stroke="rgba(255,165,0,0.1)" stroke-width="0.5"/></pattern></defs><rect width="100" height="100" fill="url(%23grid)"/></svg>');
+            opacity: 0.3;
+        }
+
+        .activities-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 30px;
+            position: relative;
+            z-index: 2;
+            margin-top: 60px;
+        }
+
+        .activity-card {
+            background: rgba(255, 165, 0, 0.08);
+            border: 1px solid rgba(255, 165, 0, 0.2);
+            border-radius: 20px;
+            padding: 35px;
+            transition: all 0.3s;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .activity-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 3px;
+            background: linear-gradient(90deg, #ffa500, #ff4500);
+        }
+
+        .activity-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 40px rgba(255, 165, 0, 0.2);
+            border-color: rgba(255, 165, 0, 0.5);
+        }
+
+        .activity-icon {
+            font-size: 48px;
+            margin-bottom: 20px;
+            display: block;
+            filter: drop-shadow(0 0 10px #ffa500);
+        }
+
+        .activity-card h3 {
+            color: #ffffff;
+            font-size: clamp(18px, 4vw, 22px);
+            margin-bottom: 15px;
+            font-weight: 700;
+        }
+
+        .activity-card p {
+            color: rgba(255, 255, 255, 0.8);
+            font-size: 16px;
+            line-height: 1.7;
+        }
+
+        /* Outcomes Section */
+        .outcomes-section {
+            background: linear-gradient(135deg, #2a1810 0%, #3a2420 100%);
+        }
+
+        .outcomes-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 25px;
+            margin-top: 40px;
+        }
+
+        .outcome-card {
+            background: rgba(0, 0, 0, 0.6);
+            border: 1px solid rgba(255, 69, 0, 0.3);
+            border-radius: 20px;
+            padding: 30px;
+            text-align: center;
+            transition: all 0.3s;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .outcome-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 2px;
+            background: linear-gradient(90deg, #ff4500, #ffa500);
+        }
+
+        .outcome-card:hover {
+            transform: translateY(-8px);
+            border-color: rgba(255, 69, 0, 0.6);
+            box-shadow: 0 15px 35px rgba(255, 69, 0, 0.2);
+        }
+
+        .outcome-card h3 {
+            color: #ff4500;
+            font-size: clamp(16px, 4vw, 20px);
+            margin-bottom: 15px;
+            font-weight: 700;
+            text-shadow: 0 0 10px rgba(255, 69, 0, 0.3);
+        }
+
+        .outcome-card p {
+            color: rgba(255, 255, 255, 0.8);
+            font-size: 14px;
+            line-height: 1.6;
+        }
+
+        /* Mentorship Section */
+        .mentorship-section {
+            background: linear-gradient(135deg, #1a0f0a 0%, #2a1810 100%);
+        }
+
+        .mentorship-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 30px;
+            margin-top: 40px;
+        }
+
+        .mentor-feature {
+            background: rgba(255, 165, 0, 0.05);
+            border: 1px solid rgba(255, 165, 0, 0.2);
+            border-radius: 15px;
+            padding: 30px;
+            text-align: center;
+            transition: all 0.3s;
+        }
+
+        .mentor-feature:hover {
+            transform: translateY(-5px);
+            border-color: rgba(255, 165, 0, 0.5);
+            box-shadow: 0 10px 30px rgba(255, 165, 0, 0.2);
+        }
+
+        .mentor-icon {
+            font-size: 40px;
+            margin-bottom: 15px;
+            display: block;
+        }
+
+        .mentor-feature h3 {
+            color: #ffa500;
+            font-size: 18px;
+            margin-bottom: 10px;
+            text-shadow: 0 0 10px rgba(255, 165, 0, 0.3);
+        }
+
+        .mentor-feature p {
+            color: rgba(255, 255, 255, 0.8);
+            font-size: 14px;
+            line-height: 1.6;
+        }
+
+        /* Network Section */
+        .network-section {
+            background: linear-gradient(135deg, #3a2420 0%, #4a3430 100%);
+        }
+
+        .network-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 30px;
+            margin-top: 40px;
+        }
+
+        .network-card {
+            background: rgba(0, 0, 0, 0.7);
+            border: 1px solid rgba(255, 165, 0, 0.3);
+            border-radius: 20px;
+            padding: 35px;
+            transition: all 0.3s;
+            position: relative;
+        }
+
+        .network-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 2px;
+            background: linear-gradient(90deg, #ffa500, #ff4500);
+        }
+
+        .network-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 40px rgba(255, 165, 0, 0.2);
+            border-color: rgba(255, 69, 0, 0.5);
+        }
+
+        .network-card h3 {
+            color: #ffa500;
+            font-size: clamp(18px, 4vw, 22px);
+            margin-bottom: 15px;
+            text-shadow: 0 0 10px rgba(255, 165, 0, 0.3);
+        }
+
+        .network-card p {
+            color: rgba(255, 255, 255, 0.8);
+            line-height: 1.7;
+            font-size: 16px;
+        }
+
+        /* Why Garage Exists */
+        .why-section {
+            background: linear-gradient(135deg, #0a0a0a 0%, #2a1810 100%);
+        }
+
+        .why-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 30px;
+            margin-top: 40px;
+        }
+
+        .why-card {
+            background: rgba(255, 165, 0, 0.08);
+            border: 1px solid rgba(255, 165, 0, 0.3);
+            border-radius: 20px;
+            padding: 35px;
+            transition: all 0.3s;
+            position: relative;
+        }
+
+        .why-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 2px;
+            background: linear-gradient(90deg, #ffa500, #ff4500);
+        }
+
+        .why-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 40px rgba(255, 165, 0, 0.2);
+            border-color: rgba(255, 165, 0, 0.6);
+        }
+
+        .why-card h3 {
+            color: #ffa500;
+            font-size: clamp(18px, 4vw, 22px);
+            margin-bottom: 15px;
+            text-shadow: 0 0 10px rgba(255, 165, 0, 0.3);
+        }
+
+        .why-card p {
+            color: rgba(255, 255, 255, 0.8);
+            line-height: 1.7;
+            font-size: 16px;
+        }
+
+        /* Final CTA Section */
+        .final-cta {
+            background: linear-gradient(135deg, #1a0f0a 0%, #2a1810 50%, #3a2420 100%);
+            color: white;
+            text-align: center;
+            padding: 120px 0;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .final-cta::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: radial-gradient(ellipse at center, rgba(255, 165, 0, 0.15) 0%, transparent 70%);
+        }
+
+        .final-cta .container {
+            position: relative;
+            z-index: 2;
+        }
+
+        @media (max-width: 768px) {
+            .final-cta {
+                padding: 80px 0;
+            }
+        }
+
+        .final-cta h2 {
+            font-size: clamp(32px, 6vw, 48px);
+            margin-bottom: 20px;
+            color: #ffa500;
+            text-shadow: 0 0 20px rgba(255, 165, 0, 0.5);
+        }
+
+        .final-cta p {
+            font-size: clamp(16px, 4vw, 20px);
+            margin-bottom: 40px;
+            opacity: 0.9;
+            line-height: 1.6;
+            max-width: 700px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .cta-buttons {
+            display: flex;
+            gap: 20px;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
+        @media (max-width: 768px) {
+            .cta-buttons {
+                flex-direction: column;
+                align-items: center;
+                gap: 15px;
+            }
+        }
+
+        .secondary-cta {
+            background: transparent;
+            border: 2px solid #ffa500;
+            color: #ffa500;
+            padding: 18px 40px;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: all 0.3s;
+            font-size: clamp(14px, 3vw, 16px);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .secondary-cta::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255, 165, 0, 0.2), transparent);
+            transition: left 0.5s;
+        }
+
+        .secondary-cta:hover::before {
+            left: 100%;
+        }
+
+        .secondary-cta:hover {
+            background: rgba(255, 165, 0, 0.1);
+            border-color: #ff4500;
+            color: #ff4500;
+            text-shadow: 0 0 10px rgba(255, 69, 0, 0.5);
+            box-shadow: 0 0 20px rgba(255, 165, 0, 0.3);
+        }
+
+        /* Mobile Responsiveness */
+        @media (max-width: 768px) {
+            .nav-links {
+                display: none;
+            }
+            
+            .activities-grid {
+                grid-template-columns: 1fr;
+                gap: 20px;
+            }
+            
+            .outcomes-grid {
+                grid-template-columns: 1fr;
+                gap: 20px;
+            }
+            
+            .mentorship-grid {
+                grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+                gap: 20px;
+            }
+            
+            .network-grid {
+                grid-template-columns: 1fr;
+                gap: 20px;
+            }
+            
+            .why-grid {
+                grid-template-columns: 1fr;
+                gap: 20px;
+            }
+        }
+
+        /* Fade In Animation */
+        .fade-in {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: all 0.6s;
+        }
+
+        .fade-in.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* Special startup-focused styling */
+        .startup-highlight {
+            background: linear-gradient(45deg, rgba(255, 165, 0, 0.1), rgba(255, 69, 0, 0.1));
+            border-left: 4px solid #ffa500;
+            padding: 20px;
+            margin: 20px 0;
+            border-radius: 10px;
+        }
+
+        .venture-badge {
+            display: inline-block;
+            background: linear-gradient(45deg, #ffa500, #ff4500);
+            color: #000;
+            padding: 5px 15px;
+            border-radius: 20px;
+            font-size: 12px;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-bottom: 10px;
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header class="header">
+        <div class="nav-container">
+            <a href="#" class="logo">
+                <span class="rocket">🚀</span>
+                INNOYAN GARAGE
+            </a>
+            <div class="nav-links">
+                <a href="#activities">What You Do</a>
+                <a href="#outcomes">Outcomes</a>
+                <a href="#mentorship">Mentorship</a>
+                <a href="#network">Network</a>
+                <a href="#why-garage">Why Garage</a>
+            </div>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="hero-content">
+            <h1>Build Ventures Before You Graduate.</h1>
+            <p class="hero-subtitle">
+                Turn college into a launchpad — build real products, real companies, and real-world experience before you even graduate.
+            </p>
+            <a href="#activities" class="hero-cta">Start Building</a>
+        </div>
+    </section>
+
+    <!-- What Students Do Section -->
+    <section class="section activities-section" id="activities">
+        <div class="container">
+            <h2 class="section-title fade-in">From Idea To Scalable Venture — In College.</h2>
+            
+            <div class="activities-grid">
+                <div class="activity-card fade-in">
+                    <span class="activity-icon">🔍</span>
+                    <h3>Identify Real-World Problems</h3>
+                    <p>Learn to spot market gaps and understand customer pain points through systematic research and validation methodologies.</p>
+                </div>
+                
+                <div class="activity-card fade-in">
+                    <span class="activity-icon">📊</span>
+                    <h3>Validate Business Ideas</h3>
+                    <p>Conduct real user research, interview potential customers, and test assumptions before building anything.</p>
+                </div>
+                
+                <div class="activity-card fade-in">
+                    <span class="activity-icon">⚡</span>
+                    <h3>Build MVPs & Prototypes</h3>
+                    <p>Create working product prototypes using modern tools and frameworks to test your solutions in the real world.</p>
+                </div>
+                
+                <div class="activity-card fade-in">
+                    <span class="activity-icon">🎯</span>
+                    <h3>Pitch to Real Investors</h3>
+                    <p>Present to actual investors, incubators, and accelerators to get feedback and potential funding opportunities.</p>
+                </div>
+                
+                <div class="activity-card fade-in">
+                    <span class="activity-icon">📈</span>
+                    <h3>Learn Venture Finance & Scaling</h3>
+                    <p>Master fundraising, growth metrics, and startup scaling strategies from experienced entrepreneurs and VCs.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Outcomes Section -->
+    <section class="section outcomes-section" id="outcomes">
+        <div class="container">
+            <h2 class="section-title fade-in">Graduate With More Than A Degree.</h2>
+            
+            <div class="outcomes-grid">
+                <div class="outcome-card fade-in">
+                    <div class="venture-badge">Launch Ready</div>
+                    <h3>Real Product Launches</h3>
+                    <p>Ship actual products with real users and customers, not just academic projects or theoretical case studies.</p>
+                </div>
+                
+                <div class="outcome-card fade-in">
+                    <div class="venture-badge">Investor Ready</div>
+                    <h3>Venture-Ready Pitch Decks</h3>
+                    <p>Professional pitch materials and live investor conversations that open doors to funding opportunities.</p>
+                </div>
+                
+                <div class="outcome-card fade-in">
+                    <div class="venture-badge">Globally Visible</div>
+                    <h3>Global Demo Days</h3>
+                    <p>Showcase your ventures at competitions and demo days, gaining recognition from industry leaders.</p>
+                </div>
+                
+                <div class="outcome-card fade-in">
+                    <div class="venture-badge">Leadership Ready</div>
+                    <h3>Venture Leadership Experience</h3>
+                    <p>Build and lead teams, manage stakeholders, and navigate the complexities of startup operations.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Mentorship Section -->
+    <section class="section mentorship-section" id="mentorship">
+        <div class="container">
+            <h2 class="section-title fade-in">Learn Directly From Builders.</h2>
+            
+            <div class="mentorship-grid">
+                <div class="mentor-feature fade-in">
+                    <span class="mentor-icon">👥</span>
+                    <h3>Industry Founders</h3>
+                    <p>Work directly with successful startup founders, operators, and venture capital professionals who've built companies.</p>
+                </div>
+                
+                <div class="mentor-feature fade-in">
+                    <span class="mentor-icon">🎯</span>
+                    <h3>1:1 Mentorship</h3>
+                    <p>Personal guidance through individual mentoring sessions and dedicated startup clinics for focused problem-solving.</p>
+                </div>
+                
+                <div class="mentor-feature fade-in">
+                    <span class="mentor-icon">🏆</span>
+                    <h3>Elite Institution Alumni</h3>
+                    <p>Access advisors from IITs, IIMs, and global companies who understand both academic excellence and business success.</p>
+                </div>
+                
+                <div class="mentor-feature fade-in">
+                    <span class="mentor-icon">🤖</span>
+                    <h3>AI Learning Coach</h3>
+                    <p>AI-powered progress tracking and personalized nudges to keep you on track toward your venture goals.</p>
+                </div>
+                
+                <div class="mentor-feature fade-in">
+                    <span class="mentor-icon">💡</span>
+                    <h3>Expert Guest Sessions</h3>
+                    <p>Regular sessions with active founders and domain experts sharing real-time insights from the trenches.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Network Section -->
+    <section class="section network-section" id="network">
+        <div class="container">
+            <h2 class="section-title fade-in">Build With A Community Of Builders.</h2>
+            
+            <div class="network-grid">
+                <div class="network-card fade-in">
+                    <h3>Peer-to-Peer Founder Community</h3>
+                    <p>Connect with like-minded student entrepreneurs who are building ventures, share challenges, and collaborate on solutions together.</p>
+                </div>
+                
+                <div class="network-card fade-in">
+                    <h3>Co-founder & Collaborator Access</h3>
+                    <p>Find co-founders, designers, and technical collaborators from within the Garage community to build stronger teams.</p>
+                </div>
+                
+                <div class="network-card fade-in">
+                    <h3>Investor & Industry Connections</h3>
+                    <p>Direct access to investors, industry leaders, and accelerators through curated networking events and introductions.</p>
+                </div>
+                
+                <div class="network-card fade-in">
+                    <h3>Demo Days & Public Showcases</h3>
+                    <p>Regular opportunities to present your ventures publicly, gain feedback, and attract potential partners and investors.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Why Garage Exists Section -->
+    <section class="section why-section" id="why-garage">
+        <div class="container">
+            <h2 class="section-title fade-in">The Future Belongs To Those Who Build.</h2>
+            
+            <div class="why-grid">
+                <div class="why-card fade-in">
+                    <h3>Degrees Aren't Enough</h3>
+                    <p>In today's competitive landscape, degrees alone are no longer sufficient — execution and hands-on venture experience are what truly matter to employers and investors.</p>
+                </div>
+                
+                <div class="why-card fade-in">
+                    <h3>Real Startup Experience</h3>
+                    <p>College students need authentic startup building experience to differentiate themselves in a crowded job market and entrepreneurship ecosystem.</p>
+                </div>
+                
+                <div class="why-card fade-in">
+                    <h3>Industry Hires Builders</h3>
+                    <p>Modern companies prioritize hiring builders, operators, and founders — not just high GPA holders without practical experience.</p>
+                </div>
+                
+                <div class="why-card fade-in">
+                    <h3>Early Building Platform</h3>
+                    <p>Garage provides the platform, mentorship, and network necessary for students to start building ventures early in their academic journey.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Final CTA Section -->
+    <section class="final-cta">
+        <div class="container">
+            <h2 class="fade-in">Is Your College Startup Journey Ready To Begin?</h2>
+            <p class="fade-in">Innoyan Garage turns college years into venture-building years.</p>
+            <div class="cta-buttons fade-in">
+                <a href="#start" class="hero-cta">Start Building</a>
+                <a href="#call" class="secondary-cta">Book A Discovery Call</a>
+            </div>
+        </div>
+    </section>
+
+    <script>
+        // Scroll animations
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                }
+            });
+        }, observerOptions);
+
+        document.querySelectorAll('.fade-in').forEach(el => {
+            observer.observe(el);
+        });
+
+        // Smooth scrolling for navigation links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const targetId = this.getAttribute('href');
+                const targetElement = document.querySelector(targetId);
+                if (targetElement) {
+                    targetElement.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+
+        // Parallax effect for hero background
+        window.addEventListener('scroll', () => {
+            const scrolled = window.pageYOffset;
+            const hero = document.querySelector('.hero');
+            if (hero) {
+                hero.style.transform = `translateY(${scrolled * 0.3}px)`;
+            }
+        });
+
+        // Startup-themed particles effect
+        function createParticle() {
+            const particle = document.createElement('div');
+            particle.style.position = 'fixed';
+            particle.style.width = '3px';
+            particle.style.height = '3px';
+            particle.style.background = Math.random() > 0.5 ? '#ffa500' : '#ff4500';
+            particle.style.borderRadius = '50%';
+            particle.style.pointerEvents = 'none';
+            particle.style.zIndex = '1';
+            particle.style.boxShadow = `0 0 8px ${particle.style.background}`;
+            particle.style.left = Math.random() * window.innerWidth + 'px';
+            particle.style.top = '-10px';
+            document.body.appendChild(particle);
+
+            const fallDuration = Math.random() * 4000 + 3000;
+            const fallAnimation = particle.animate([
+                { transform: 'translateY(0px) rotate(0deg)', opacity: 1 },
+                { transform: `translateY(${window.innerHeight + 10}px) rotate(360deg)`, opacity: 0 }
+            ], {
+                duration: fallDuration,
+                easing: 'cubic-bezier(0.4, 0, 0.2, 1)'
+            });
+
+            fallAnimation.onfinish = () => particle.remove();
+        }
+
+        // Create particles periodically
+        setInterval(createParticle, 300);
+
+        // Interactive hover effects for cards with startup feel
+        document.querySelectorAll('.activity-card, .outcome-card, .mentor-feature, .network-card, .why-card').forEach(card => {
+            card.addEventListener('mouseenter', function() {
+                this.style.transform = 'translateY(-12px) scale(1.03)';
+                this.style.filter = 'brightness(1.1)';
+            });
+            
+            card.addEventListener('mouseleave', function() {
+                this.style.transform = '';
+                this.style.filter = '';
+            });
+        });
+
+        // Enhanced CTA button interactions
+        document.querySelectorAll('.hero-cta, .secondary-cta').forEach(btn => {
+            btn.addEventListener('click', function(e) {
+                e.preventDefault();
+                
+                // Create multiple ripple effects
+                for (let i = 0; i < 3; i++) {
+                    setTimeout(() => {
+                        const ripple = document.createElement('span');
+                        ripple.style.position = 'absolute';
+                        ripple.style.borderRadius = '50%';
+                        ripple.style.background = 'rgba(255, 255, 255, 0.4)';
+                        ripple.style.transform = 'scale(0)';
+                        ripple.style.animation = 'ripple 0.8s ease-out';
+                        ripple.style.left = '50%';
+                        ripple.style.top = '50%';
+                        ripple.style.width = '30px';
+                        ripple.style.height = '30px';
+                        ripple.style.marginLeft = '-15px';
+                        ripple.style.marginTop = '-15px';
+                        
+                        this.appendChild(ripple);
+                        
+                        setTimeout(() => {
+                            ripple.remove();
+                        }, 800);
+                    }, i * 100);
+                }
+                
+                // Enhanced visual feedback
+                this.style.transform = 'scale(0.92)';
+                this.style.filter = 'brightness(1.2)';
+                setTimeout(() => {
+                    this.style.transform = '';
+                    this.style.filter = '';
+                }, 200);
+            });
+        });
+
+        // Add CSS for enhanced ripple animation
+        const style = document.createElement('style');
+        style.textContent = `
+            @keyframes ripple {
+                to {
+                    transform: scale(6);
+                    opacity: 0;
+                }
+            }
+            
+            .hero-cta, .secondary-cta {
+                position: relative;
+                overflow: hidden;
+            }
+            
+            .venture-badge {
+                animation: badge-glow 2s infinite alternate;
+            }
+            
+            @keyframes badge-glow {
+                0% { box-shadow: 0 0 5px rgba(255, 165, 0, 0.5); }
+                100% { box-shadow: 0 0 15px rgba(255, 165, 0, 0.8); }
+            }
+        `;
+        document.head.appendChild(style);
+
+        // Staggered animation for startup-focused cards
+        document.addEventListener('DOMContentLoaded', function() {
+            const activityCards = document.querySelectorAll('.activity-card');
+            activityCards.forEach((card, index) => {
+                card.style.animationDelay = `${index * 0.15}s`;
+            });
+            
+            const outcomeCards = document.querySelectorAll('.outcome-card');
+            outcomeCards.forEach((card, index) => {
+                card.style.animationDelay = `${index * 0.12}s`;
+            });
+            
+            const mentorFeatures = document.querySelectorAll('.mentor-feature');
+            mentorFeatures.forEach((feature, index) => {
+                feature.style.animationDelay = `${index * 0.1}s`;
+            });
+        });
+
+        // Advanced scroll effects with startup energy
+        let ticking = false;
+        function updateOnScroll() {
+            const scrolled = window.pageYOffset;
+            
+            // Dynamic parallax for different sections
+            const sections = document.querySelectorAll('.section');
+            sections.forEach((section, index) => {
+                const rate = scrolled * (index % 2 === 0 ? -0.05 : 0.05);
+                section.style.transform = `translateY(${rate}px)`;
+            });
+            
+            // Enhance navbar on scroll
+            const nav = document.querySelector('.header');
+            if (scrolled > 100) {
+                nav.style.background = 'rgba(0, 0, 0, 0.98)';
+                nav.style.backdropFilter = 'blur(25px)';
+                nav.style.borderBottom = '1px solid rgba(255, 165, 0, 0.5)';
+            } else {
+                nav.style.background = 'rgba(0, 0, 0, 0.95)';
+                nav.style.backdropFilter = 'blur(20px)';
+                nav.style.borderBottom = '1px solid rgba(255, 165, 0, 0.3)';
+            }
+            
+            ticking = false;
+        }
+
+        window.addEventListener('scroll', function() {
+            if (!ticking) {
+                requestAnimationFrame(updateOnScroll);
+                ticking = true;
+            }
+        });
+
+        // Add startup energy with dynamic background effects
+        setInterval(() => {
+            const sections = document.querySelectorAll('.section');
+            sections.forEach(section => {
+                if (Math.random() > 0.8) {
+                    section.style.filter = 'brightness(1.02)';
+                    setTimeout(() => {
+                        section.style.filter = '';
+                    }, 200);
+                }
+            });
+        }, 3000);
+
+        // Venture badge hover effects
+        document.querySelectorAll('.venture-badge').forEach(badge => {
+            badge.addEventListener('mouseenter', function() {
+                this.style.transform = 'scale(1.1) rotate(2deg)';
+                this.style.background = 'linear-gradient(45deg, #ff4500, #ffa500)';
+            });
+            
+            badge.addEventListener('mouseleave', function() {
+                this.style.transform = '';
+                this.style.background = 'linear-gradient(45deg, #ffa500, #ff4500)';
+            });
+        });
+    </script>
+</body>
+</html>
