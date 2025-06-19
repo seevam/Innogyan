@@ -1,0 +1,1097 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Club Innoyan - From Curious Student to Confident Creator</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+            line-height: 1.6;
+            color: #1a1a1a;
+            overflow-x: hidden;
+            background: #0a0a0a;
+        }
+
+        /* Header */
+        .header {
+            background: rgba(0, 0, 0, 0.95);
+            backdrop-filter: blur(20px);
+            padding: 15px 0;
+            position: fixed;
+            top: 0;
+            width: 100%;
+            z-index: 1000;
+            border-bottom: 1px solid rgba(0, 255, 255, 0.3);
+        }
+
+        .nav-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-size: 24px;
+            font-weight: 800;
+            color: #00ffff;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            text-shadow: 0 0 10px rgba(0, 255, 255, 0.5);
+            text-decoration: none;
+        }
+
+        .rocket {
+            font-size: 28px;
+            animation: rocket-bounce 2s infinite;
+            filter: drop-shadow(0 0 5px #00ffff);
+        }
+
+        @keyframes rocket-bounce {
+            0%, 100% { transform: translateY(0) rotate(0deg); }
+            50% { transform: translateY(-5px) rotate(2deg); }
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 30px;
+        }
+
+        .nav-links a {
+            color: #ffffff;
+            text-decoration: none;
+            font-weight: 500;
+            transition: all 0.3s;
+            padding: 8px 16px;
+            border-radius: 20px;
+        }
+
+        .nav-links a:hover {
+            color: #00ffff;
+            background: rgba(0, 255, 255, 0.1);
+            text-shadow: 0 0 5px rgba(0, 255, 255, 0.5);
+        }
+
+        /* Hero Section */
+        .hero {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            background: linear-gradient(135deg, #0a0a0a 0%, #1a1a2e 50%, #16213e 100%);
+            position: relative;
+            overflow: hidden;
+            padding-top: 80px;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 1000"><defs><radialGradient id="grad1"><stop offset="0%" stop-color="rgba(0,255,255,0.2)"/><stop offset="100%" stop-color="rgba(0,255,255,0)"/></radialGradient><radialGradient id="grad2"><stop offset="0%" stop-color="rgba(255,0,255,0.1)"/><stop offset="100%" stop-color="rgba(255,0,255,0)"/></radialGradient></defs><circle cx="200" cy="200" r="3" fill="url(%23grad1)"/><circle cx="800" cy="300" r="2" fill="url(%23grad2)"/><circle cx="300" cy="700" r="4" fill="url(%23grad1)"/><circle cx="700" cy="800" r="2" fill="url(%23grad2)"/></svg>');
+            animation: float 20s infinite linear;
+        }
+
+        .hero::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(45deg, transparent 30%, rgba(0, 255, 255, 0.03) 50%, transparent 70%);
+            animation: scan 6s infinite;
+        }
+
+        @keyframes scan {
+            0% { transform: translateX(-100%); }
+            100% { transform: translateX(100%); }
+        }
+
+        @keyframes float {
+            0% { transform: translateY(0px) translateX(0px); }
+            25% { transform: translateY(-20px) translateX(10px); }
+            50% { transform: translateY(-10px) translateX(-5px); }
+            75% { transform: translateY(-25px) translateX(8px); }
+            100% { transform: translateY(0px) translateX(0px); }
+        }
+
+        .hero-content {
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 0 20px;
+            position: relative;
+            z-index: 2;
+        }
+
+        .hero h1 {
+            font-size: clamp(40px, 8vw, 68px);
+            font-weight: 800;
+            color: #ffffff;
+            margin-bottom: 25px;
+            line-height: 1.1;
+            text-shadow: 0 0 30px rgba(0, 255, 255, 0.4);
+            background: linear-gradient(45deg, #ffffff, #00ffff);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .hero-subtitle {
+            font-size: clamp(18px, 4vw, 24px);
+            color: rgba(255, 255, 255, 0.9);
+            margin-bottom: 40px;
+            line-height: 1.6;
+            max-width: 700px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .hero-cta {
+            display: inline-block;
+            background: linear-gradient(45deg, #00ffff, #ff00ff);
+            color: #000;
+            padding: 20px 50px;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: clamp(16px, 3vw, 20px);
+            transition: all 0.3s;
+            box-shadow: 0 10px 30px rgba(0, 255, 255, 0.4);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero-cta::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+            transition: left 0.5s;
+        }
+
+        .hero-cta:hover::before {
+            left: 100%;
+        }
+
+        .hero-cta:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 15px 40px rgba(0, 255, 255, 0.5);
+        }
+
+        /* Section Styles */
+        .section {
+            padding: 100px 0;
+            position: relative;
+        }
+
+        @media (max-width: 768px) {
+            .section {
+                padding: 60px 0;
+            }
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        .section-title {
+            font-size: clamp(32px, 6vw, 48px);
+            font-weight: 800;
+            text-align: center;
+            margin-bottom: 20px;
+            color: #00ffff;
+            text-shadow: 0 0 20px rgba(0, 255, 255, 0.5);
+        }
+
+        .section-subtitle {
+            font-size: clamp(16px, 4vw, 20px);
+            text-align: center;
+            color: rgba(255, 255, 255, 0.8);
+            margin-bottom: 60px;
+            max-width: 800px;
+            margin-left: auto;
+            margin-right: auto;
+            line-height: 1.6;
+        }
+
+        /* Future Outcomes Section */
+        .outcomes-section {
+            background: linear-gradient(135deg, #0f0f23 0%, #1a1a2e 100%);
+            position: relative;
+        }
+
+        .outcomes-section::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><defs><pattern id="grid" width="10" height="10" patternUnits="userSpaceOnUse"><path d="M 10 0 L 0 0 0 10" fill="none" stroke="rgba(0,255,255,0.1)" stroke-width="0.5"/></pattern></defs><rect width="100" height="100" fill="url(%23grid)"/></svg>');
+            opacity: 0.3;
+        }
+
+        .outcomes-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 30px;
+            position: relative;
+            z-index: 2;
+            margin-top: 60px;
+        }
+
+        .outcome-card {
+            background: rgba(0, 255, 255, 0.05);
+            border: 1px solid rgba(0, 255, 255, 0.2);
+            border-radius: 20px;
+            padding: 35px;
+            transition: all 0.3s;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .outcome-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 3px;
+            background: linear-gradient(90deg, #00ffff, #ff00ff);
+        }
+
+        .outcome-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 40px rgba(0, 255, 255, 0.2);
+            border-color: rgba(0, 255, 255, 0.5);
+        }
+
+        .outcome-icon {
+            font-size: 48px;
+            margin-bottom: 20px;
+            display: block;
+            filter: drop-shadow(0 0 10px #00ffff);
+        }
+
+        .outcome-card h3 {
+            color: #ffffff;
+            font-size: clamp(18px, 4vw, 22px);
+            margin-bottom: 15px;
+            font-weight: 700;
+        }
+
+        .outcome-card p {
+            color: rgba(255, 255, 255, 0.8);
+            font-size: 16px;
+            line-height: 1.7;
+        }
+
+        .tagline {
+            text-align: center;
+            font-style: italic;
+            color: rgba(255, 255, 255, 0.6);
+            font-size: 16px;
+            margin-top: 40px;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        /* Program Structure Section */
+        .program-section {
+            background: linear-gradient(135deg, #1a1a2e 0%, #16213e 100%);
+        }
+
+        .explorer-quest {
+            background: rgba(0, 255, 255, 0.08);
+            border: 2px solid rgba(0, 255, 255, 0.3);
+            border-radius: 25px;
+            padding: 40px;
+            margin-bottom: 50px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .explorer-quest::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 4px;
+            background: linear-gradient(90deg, #00ffff, #ff00ff);
+        }
+
+        .explorer-quest h3 {
+            color: #00ffff;
+            font-size: clamp(24px, 5vw, 32px);
+            margin-bottom: 20px;
+            text-shadow: 0 0 15px rgba(0, 255, 255, 0.5);
+        }
+
+        .explorer-quest .subtitle {
+            color: rgba(255, 255, 255, 0.9);
+            font-size: 18px;
+            margin-bottom: 25px;
+            line-height: 1.6;
+        }
+
+        .quest-features {
+            list-style: none;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 15px;
+        }
+
+        .quest-features li {
+            color: rgba(255, 255, 255, 0.9);
+            padding: 12px 0;
+            padding-left: 25px;
+            position: relative;
+            font-size: 16px;
+            line-height: 1.5;
+        }
+
+        .quest-features li::before {
+            content: '▸';
+            position: absolute;
+            left: 0;
+            color: #ff00ff;
+            font-weight: bold;
+            font-size: 18px;
+        }
+
+        /* Innovation Clubs Grid */
+        .clubs-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 25px;
+            margin-top: 40px;
+        }
+
+        .club-card {
+            background: rgba(0, 0, 0, 0.6);
+            border: 1px solid rgba(255, 0, 255, 0.3);
+            border-radius: 20px;
+            padding: 30px;
+            transition: all 0.3s;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .club-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 2px;
+            background: linear-gradient(90deg, #ff00ff, #00ffff);
+        }
+
+        .club-card:hover {
+            transform: translateY(-8px);
+            border-color: rgba(255, 0, 255, 0.6);
+            box-shadow: 0 15px 35px rgba(255, 0, 255, 0.2);
+        }
+
+        .club-header {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            margin-bottom: 15px;
+        }
+
+        .club-icon {
+            font-size: 32px;
+            filter: drop-shadow(0 0 5px #ff00ff);
+        }
+
+        .club-card h4 {
+            color: #ff00ff;
+            font-size: clamp(16px, 4vw, 20px);
+            font-weight: 700;
+            text-shadow: 0 0 10px rgba(255, 0, 255, 0.3);
+        }
+
+        .club-card p {
+            color: rgba(255, 255, 255, 0.8);
+            font-size: 14px;
+            line-height: 1.6;
+        }
+
+        /* Mentorship Section */
+        .mentorship-section {
+            background: linear-gradient(135deg, #16213e 0%, #0f3460 100%);
+        }
+
+        .mentorship-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 30px;
+            margin-top: 40px;
+        }
+
+        .mentor-feature {
+            background: rgba(0, 255, 255, 0.05);
+            border: 1px solid rgba(0, 255, 255, 0.2);
+            border-radius: 15px;
+            padding: 30px;
+            text-align: center;
+            transition: all 0.3s;
+        }
+
+        .mentor-feature:hover {
+            transform: translateY(-5px);
+            border-color: rgba(0, 255, 255, 0.5);
+            box-shadow: 0 10px 30px rgba(0, 255, 255, 0.2);
+        }
+
+        .mentor-icon {
+            font-size: 40px;
+            margin-bottom: 15px;
+            display: block;
+        }
+
+        .mentor-feature h3 {
+            color: #00ffff;
+            font-size: 18px;
+            margin-bottom: 10px;
+            text-shadow: 0 0 10px rgba(0, 255, 255, 0.3);
+        }
+
+        .mentor-feature p {
+            color: rgba(255, 255, 255, 0.8);
+            font-size: 14px;
+            line-height: 1.6;
+        }
+
+        /* Why Innoyan Works */
+        .works-section {
+            background: linear-gradient(135deg, #0a0a0a 0%, #1a1a2e 100%);
+        }
+
+        .works-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 30px;
+            margin-top: 40px;
+        }
+
+        .works-card {
+            background: rgba(0, 0, 0, 0.7);
+            border: 1px solid rgba(0, 255, 255, 0.3);
+            border-radius: 20px;
+            padding: 35px;
+            transition: all 0.3s;
+            position: relative;
+        }
+
+        .works-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 2px;
+            background: linear-gradient(90deg, #00ffff, #ff00ff);
+        }
+
+        .works-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 40px rgba(0, 255, 255, 0.2);
+            border-color: rgba(255, 0, 255, 0.5);
+        }
+
+        .works-card h3 {
+            color: #00ffff;
+            font-size: clamp(18px, 4vw, 22px);
+            margin-bottom: 15px;
+            text-shadow: 0 0 10px rgba(0, 255, 255, 0.3);
+        }
+
+        .works-card p {
+            color: rgba(255, 255, 255, 0.8);
+            line-height: 1.7;
+            font-size: 16px;
+        }
+
+        /* Final CTA Section */
+        .final-cta {
+            background: linear-gradient(135deg, #0f0f23 0%, #1a1a2e 50%, #16213e 100%);
+            color: white;
+            text-align: center;
+            padding: 120px 0;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .final-cta::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: radial-gradient(ellipse at center, rgba(0, 255, 255, 0.1) 0%, transparent 70%);
+        }
+
+        .final-cta .container {
+            position: relative;
+            z-index: 2;
+        }
+
+        @media (max-width: 768px) {
+            .final-cta {
+                padding: 80px 0;
+            }
+        }
+
+        .final-cta h2 {
+            font-size: clamp(32px, 6vw, 48px);
+            margin-bottom: 20px;
+            color: #00ffff;
+            text-shadow: 0 0 20px rgba(0, 255, 255, 0.5);
+        }
+
+        .final-cta p {
+            font-size: clamp(16px, 4vw, 20px);
+            margin-bottom: 40px;
+            opacity: 0.9;
+            line-height: 1.6;
+            max-width: 700px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .cta-buttons {
+            display: flex;
+            gap: 20px;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
+        @media (max-width: 768px) {
+            .cta-buttons {
+                flex-direction: column;
+                align-items: center;
+                gap: 15px;
+            }
+        }
+
+        .secondary-cta {
+            background: transparent;
+            border: 2px solid #00ffff;
+            color: #00ffff;
+            padding: 18px 40px;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: all 0.3s;
+            font-size: clamp(14px, 3vw, 16px);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .secondary-cta::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(0, 255, 255, 0.2), transparent);
+            transition: left 0.5s;
+        }
+
+        .secondary-cta:hover::before {
+            left: 100%;
+        }
+
+        .secondary-cta:hover {
+            background: rgba(0, 255, 255, 0.1);
+            border-color: #ff00ff;
+            color: #ff00ff;
+            text-shadow: 0 0 10px rgba(255, 0, 255, 0.5);
+            box-shadow: 0 0 20px rgba(0, 255, 255, 0.3);
+        }
+
+        /* Mobile Responsiveness */
+        @media (max-width: 768px) {
+            .nav-links {
+                display: none;
+            }
+            
+            .outcomes-grid {
+                grid-template-columns: 1fr;
+                gap: 20px;
+            }
+            
+            .clubs-grid {
+                grid-template-columns: 1fr;
+                gap: 20px;
+            }
+            
+            .mentorship-grid {
+                grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+                gap: 20px;
+            }
+            
+            .works-grid {
+                grid-template-columns: 1fr;
+                gap: 20px;
+            }
+            
+            .explorer-quest {
+                padding: 25px 20px;
+            }
+            
+            .quest-features {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        /* Fade In Animation */
+        .fade-in {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: all 0.6s;
+        }
+
+        .fade-in.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header class="header">
+        <div class="nav-container">
+            <a href="#" class="logo">
+                <span class="rocket">🚀</span>
+                CLUB INNOYAN
+            </a>
+            <div class="nav-links">
+                <a href="#outcomes">Outcomes</a>
+                <a href="#programs">Programs</a>
+                <a href="#mentorship">Mentorship</a>
+                <a href="#why-works">Why It Works</a>
+            </div>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="hero-content">
+            <h1>From Curious Student to Confident Creator.</h1>
+            <p class="hero-subtitle">
+                Real-world projects, global mentors, and powerful portfolios — turning students into creators ready for universities, companies, and the world.
+            </p>
+            <a href="#programs" class="hero-cta">Start The Journey</a>
+        </div>
+    </section>
+
+    <!-- Future Outcomes Section -->
+    <section class="section outcomes-section" id="outcomes">
+        <div class="container">
+            <h2 class="section-title fade-in">Build A Profile That Opens Global Doors</h2>
+            
+            <div class="outcomes-grid">
+                <div class="outcome-card fade-in">
+                    <span class="outcome-icon">💼</span>
+                    <h3>College-Ready Digital Portfolio</h3>
+                    <p>Showcase real-world projects that demonstrate practical skills and innovation, making applications stand out to top universities worldwide.</p>
+                </div>
+                
+                <div class="outcome-card fade-in">
+                    <span class="outcome-icon">🌟</span>
+                    <h3>Standout University Applications</h3>
+                    <p>Projects that captivate admissions committees and interview panels, demonstrating creativity, problem-solving, and real-world impact.</p>
+                </div>
+                
+                <div class="outcome-card fade-in">
+                    <span class="outcome-icon">🏆</span>
+                    <h3>Competition Entries & Research</h3>
+                    <p>Olympiad entries, research papers, and innovation showcases that build credibility and demonstrate academic excellence.</p>
+                </div>
+                
+                <div class="outcome-card fade-in">
+                    <span class="outcome-icon">📜</span>
+                    <h3>Mentor Endorsements</h3>
+                    <p>Letters of recommendation, mentor endorsements, and certifications from IIT, IIM, and global university alumni.</p>
+                </div>
+            </div>
+            
+            <p class="tagline fade-in">
+                Because in tomorrow's world, what your child has built will matter more than just what they scored.
+            </p>
+        </div>
+    </section>
+
+    <!-- Program Structure Section -->
+    <section class="section program-section" id="programs">
+        <div class="container">
+            <h2 class="section-title fade-in">Your Child's Innovation Journey</h2>
+            
+            <!-- Explorer Quest -->
+            <div class="explorer-quest fade-in">
+                <h3>🎯 Explorer Quest — The Flagship Club</h3>
+                <p class="subtitle">A discovery-first journey that helps students explore their interests, identify real-world problems, and build their very first impactful project.</p>
+                
+                <ul class="quest-features">
+                    <li>Discover domains like tech, design, entrepreneurship, storytelling & more</li>
+                    <li>Learn skills and tools to solve meaningful problems</li>
+                    <li>Build & present their first real-world project</li>
+                    <li>Create a portfolio to showcase to colleges, competitions, and future employers</li>
+                </ul>
+            </div>
+            
+            <!-- Innovation Clubs -->
+            <h3 style="color: #ff00ff; font-size: 28px; margin-bottom: 30px; text-align: center; text-shadow: 0 0 10px rgba(255, 0, 255, 0.5);">Innovation Clubs — Go Deeper</h3>
+            
+            <div class="clubs-grid">
+                <div class="club-card fade-in">
+                    <div class="club-header">
+                        <span class="club-icon">🌍</span>
+                        <h4>Impact Foundry Club</h4>
+                    </div>
+                    <p>Social Impact & Sustainability - Create solutions for global challenges while learning about sustainable development and social innovation.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Mentorship Section -->
+    <section class="section mentorship-section" id="mentorship">
+        <div class="container">
+            <h2 class="section-title fade-in">Real Mentors. Structured Feedback.</h2>
+            
+            <div class="mentorship-grid">
+                <div class="mentor-feature fade-in">
+                    <span class="mentor-icon">🎓</span>
+                    <h3>Elite Institution Alumni</h3>
+                    <p>Mentors from IITs, IIMs, and global universities who bring real-world experience and academic excellence.</p>
+                </div>
+                
+                <div class="mentor-feature fade-in">
+                    <span class="mentor-icon">👥</span>
+                    <h3>1:1 & Small Group Coaching</h3>
+                    <p>Personalized attention through individual sessions and intimate group discussions for maximum learning impact.</p>
+                </div>
+                
+                <div class="mentor-feature fade-in">
+                    <span class="mentor-icon">📈</span>
+                    <h3>Weekly Professional Feedback</h3>
+                    <p>Regular, structured feedback sessions that track progress and provide actionable insights for improvement.</p>
+                </div>
+                
+                <div class="mentor-feature fade-in">
+                    <span class="mentor-icon">🤖</span>
+                    <h3>AI-Powered Learning Coach</h3>
+                    <p>Advanced AI system provides continuous progress tracking, personalized nudges, and adaptive learning recommendations.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Why Innoyan Works Section -->
+    <section class="section works-section" id="why-works">
+        <div class="container">
+            <h2 class="section-title fade-in">We Don't Just Prepare Students For Exams — We Build Their Body Of Work</h2>
+            
+            <div class="works-grid">
+                <div class="works-card fade-in">
+                    <h3>Digital Documentation</h3>
+                    <p>Their entire journey digitally documented — every project, skill & milestone captured in a comprehensive portfolio that tells their unique story.</p>
+                </div>
+                
+                <div class="works-card fade-in">
+                    <h3>Visible, Tangible Outcomes</h3>
+                    <p>Real projects, competition entries, certifications, and public showcases that demonstrate concrete achievements and measurable impact.</p>
+                </div>
+                
+                <div class="works-card fade-in">
+                    <h3>University & Employer Proof</h3>
+                    <p>Portfolios, mentor-endorsed recommendations, and presentations that speak directly to admissions committees and hiring managers.</p>
+                </div>
+                
+                <div class="works-card fade-in">
+                    <h3>Lasting Confidence</h3>
+                    <p>Confidence that lasts beyond the classroom — clarity about their strengths, readiness for challenges, and real-world exposure.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Final CTA Section -->
+    <section class="final-cta">
+        <div class="container">
+            <h2 class="fade-in">Is Your Child Ready To Build?</h2>
+            <p class="fade-in">Club Innoyan gives them real-world skills, outcomes, and confidence — ready for global universities, companies, and beyond.</p>
+            <div class="cta-buttons fade-in">
+                <a href="#start" class="hero-cta">Start The Journey</a>
+                <a href="#call" class="secondary-cta">Book A Discovery Call</a>
+            </div>
+        </div>
+    </section>
+
+    <script>
+        // Scroll animations
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                }
+            });
+        }, observerOptions);
+
+        document.querySelectorAll('.fade-in').forEach(el => {
+            observer.observe(el);
+        });
+
+        // Smooth scrolling for navigation links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const targetId = this.getAttribute('href');
+                const targetElement = document.querySelector(targetId);
+                if (targetElement) {
+                    targetElement.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+
+        // Parallax effect for hero background
+        window.addEventListener('scroll', () => {
+            const scrolled = window.pageYOffset;
+            const hero = document.querySelector('.hero');
+            if (hero) {
+                hero.style.transform = `translateY(${scrolled * 0.3}px)`;
+            }
+        });
+
+        // Tech particles effect
+        function createParticle() {
+            const particle = document.createElement('div');
+            particle.style.position = 'fixed';
+            particle.style.width = '2px';
+            particle.style.height = '2px';
+            particle.style.background = Math.random() > 0.5 ? '#00ffff' : '#ff00ff';
+            particle.style.borderRadius = '50%';
+            particle.style.pointerEvents = 'none';
+            particle.style.zIndex = '1';
+            particle.style.boxShadow = `0 0 6px ${particle.style.background}`;
+            particle.style.left = Math.random() * window.innerWidth + 'px';
+            particle.style.top = '-10px';
+            document.body.appendChild(particle);
+
+            const fallDuration = Math.random() * 3000 + 2000;
+            const fallAnimation = particle.animate([
+                { transform: 'translateY(0px)', opacity: 1 },
+                { transform: `translateY(${window.innerHeight + 10}px)`, opacity: 0 }
+            ], {
+                duration: fallDuration,
+                easing: 'linear'
+            });
+
+            fallAnimation.onfinish = () => particle.remove();
+        }
+
+        // Create particles periodically
+        setInterval(createParticle, 350);
+
+        // Interactive hover effects for cards
+        document.querySelectorAll('.outcome-card, .club-card, .mentor-feature, .works-card').forEach(card => {
+            card.addEventListener('mouseenter', function() {
+                this.style.transform = 'translateY(-10px) scale(1.02)';
+            });
+            
+            card.addEventListener('mouseleave', function() {
+                this.style.transform = '';
+            });
+        });
+
+        // CTA button interactions with ripple effect
+        document.querySelectorAll('.hero-cta, .secondary-cta').forEach(btn => {
+            btn.addEventListener('click', function(e) {
+                e.preventDefault();
+                
+                // Create ripple effect
+                const ripple = document.createElement('span');
+                ripple.style.position = 'absolute';
+                ripple.style.borderRadius = '50%';
+                ripple.style.background = 'rgba(255, 255, 255, 0.5)';
+                ripple.style.transform = 'scale(0)';
+                ripple.style.animation = 'ripple 0.6s linear';
+                ripple.style.left = '50%';
+                ripple.style.top = '50%';
+                ripple.style.width = '20px';
+                ripple.style.height = '20px';
+                ripple.style.marginLeft = '-10px';
+                ripple.style.marginTop = '-10px';
+                
+                this.appendChild(ripple);
+                
+                setTimeout(() => {
+                    ripple.remove();
+                }, 600);
+                
+                // Visual feedback
+                this.style.transform = 'scale(0.95)';
+                setTimeout(() => {
+                    this.style.transform = '';
+                }, 150);
+            });
+        });
+
+        // Add CSS for ripple animation
+        const style = document.createElement('style');
+        style.textContent = `
+            @keyframes ripple {
+                to {
+                    transform: scale(4);
+                    opacity: 0;
+                }
+            }
+            
+            .hero-cta, .secondary-cta {
+                position: relative;
+                overflow: hidden;
+            }
+        `;
+        document.head.appendChild(style);
+
+        // Staggered animation for club cards
+        document.addEventListener('DOMContentLoaded', function() {
+            const clubCards = document.querySelectorAll('.club-card');
+            clubCards.forEach((card, index) => {
+                card.style.animationDelay = `${index * 0.1}s`;
+            });
+            
+            const mentorFeatures = document.querySelectorAll('.mentor-feature');
+            mentorFeatures.forEach((feature, index) => {
+                feature.style.animationDelay = `${index * 0.15}s`;
+            });
+        });
+
+        // Enhanced scroll effects
+        let ticking = false;
+        function updateOnScroll() {
+            const scrolled = window.pageYOffset;
+            
+            // Parallax for different sections
+            const sections = document.querySelectorAll('.section');
+            sections.forEach((section, index) => {
+                const rate = scrolled * (index % 2 === 0 ? -0.1 : 0.1);
+                section.style.transform = `translateY(${rate}px)`;
+            });
+            
+            ticking = false;
+        }
+
+        window.addEventListener('scroll', function() {
+            if (!ticking) {
+                requestAnimationFrame(updateOnScroll);
+                ticking = true;
+            }
+        });
+
+        // Dynamic navbar background
+        window.addEventListener('scroll', () => {
+            const nav = document.querySelector('.header');
+            if (window.scrollY > 100) {
+                nav.style.background = 'rgba(0, 0, 0, 0.98)';
+                nav.style.backdropFilter = 'blur(25px)';
+            } else {
+                nav.style.background = 'rgba(0, 0, 0, 0.95)';
+                nav.style.backdropFilter = 'blur(20px)';
+            }
+        });
+    </script>
+</body>
+</html>-card fade-in">
+                    <div class="club-header">
+                        <span class="club-icon">🧠</span>
+                        <h4>SolveSpace Club</h4>
+                    </div>
+                    <p>Design Thinking & Problem Solving - Learn systematic approaches to identify and solve complex real-world challenges.</p>
+                </div>
+                
+                <div class="club-card fade-in">
+                    <div class="club-header">
+                        <span class="club-icon">💻</span>
+                        <h4>Bit Builders Club</h4>
+                    </div>
+                    <p>Coding, AI & Digital Skills - Master programming languages, artificial intelligence, and cutting-edge digital technologies.</p>
+                </div>
+                
+                <div class="club-card fade-in">
+                    <div class="club-header">
+                        <span class="club-icon">🧪</span>
+                        <h4>Curiosity Club</h4>
+                    </div>
+                    <p>Research & Inquiry - Develop scientific thinking and research methodologies to explore and discover new knowledge.</p>
+                </div>
+                
+                <div class="club-card fade-in">
+                    <div class="club-header">
+                        <span class="club-icon">🚀</span>
+                        <h4>Venture Garage Club</h4>
+                    </div>
+                    <p>Entrepreneurship & Innovation - Learn to build startups, understand business models, and create market-ready solutions.</p>
+                </div>
+                
+                <div class="club-card fade-in">
+                    <div class="club-header">
+                        <span class="club-icon">🎨</span>
+                        <h4>Pixel Playhouse Club</h4>
+                    </div>
+                    <p>Visual Design & Communication - Master graphic design, UI/UX, and visual storytelling for digital and print media.</p>
+                </div>
+                
+                <div class="club-card fade-in">
+                    <div class="club-header">
+                        <span class="club-icon">🛠</span>
+                        <h4>Tinker Tank Club</h4>
+                    </div>
+                    <p>Engineering, Robotics & Prototyping - Build mechanical systems, robots, and physical prototypes that solve real problems.</p>
+                </div>
+                
+                <div class="club-card fade-in">
+                    <div class="club-header">
+                        <span class="club-icon">📣</span>
+                        <h4>Story Circuit Club</h4>
+                    </div>
+                    <p>Writing & Public Speaking - Develop powerful communication skills through creative writing and confident public speaking.</p>
+                </div>
+                
+                <div class="club
