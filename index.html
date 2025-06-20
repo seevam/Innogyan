@@ -2253,6 +2253,449 @@
             opacity: 1;
             transform: translateY(0);
         }
+
+             * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+            background: linear-gradient(135deg, #0a0a0a 0%, #1a1a2e 50%, #16213e 100%);
+            color: #ffffff;
+            line-height: 1.6;
+            min-height: 100vh;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 40px 20px;
+        }
+
+        h1 {
+            text-align: center;
+            color: #00ffff;
+            margin-bottom: 40px;
+            font-size: 32px;
+            text-shadow: 0 0 10px rgba(0, 255, 255, 0.5);
+        }
+
+        .forms-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+            gap: 30px;
+            margin-bottom: 40px;
+        }
+
+        /* Base Form Styles */
+        .lead-form {
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 20px;
+            padding: 30px;
+            backdrop-filter: blur(20px);
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .lead-form::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 3px;
+            background: linear-gradient(90deg, #00ffff, #ff00ff);
+        }
+
+        .lead-form:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 20px 40px rgba(0, 255, 255, 0.1);
+        }
+
+        .form-header {
+            margin-bottom: 25px;
+            text-align: center;
+        }
+
+        .form-title {
+            font-size: 24px;
+            color: #00ffff;
+            margin-bottom: 8px;
+            text-shadow: 0 0 10px rgba(0, 255, 255, 0.3);
+        }
+
+        .form-subtitle {
+            color: rgba(255, 255, 255, 0.7);
+            font-size: 14px;
+        }
+
+        .value-badge {
+            display: inline-block;
+            background: linear-gradient(45deg, #ff00ff, #00ffff);
+            color: #000;
+            padding: 4px 12px;
+            border-radius: 15px;
+            font-size: 12px;
+            font-weight: 600;
+            margin-bottom: 15px;
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 8px;
+            color: rgba(255, 255, 255, 0.9);
+            font-weight: 500;
+            font-size: 14px;
+        }
+
+        input, select, textarea {
+            width: 100%;
+            padding: 12px 16px;
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            border-radius: 8px;
+            color: #ffffff;
+            font-size: 14px;
+            transition: all 0.3s ease;
+        }
+
+        input:focus, select:focus, textarea:focus {
+            outline: none;
+            border-color: #00ffff;
+            box-shadow: 0 0 10px rgba(0, 255, 255, 0.3);
+            background: rgba(255, 255, 255, 0.08);
+        }
+
+        input::placeholder, textarea::placeholder {
+            color: rgba(255, 255, 255, 0.5);
+        }
+
+        select option {
+            background: #1a1a2e;
+            color: #ffffff;
+        }
+
+        .checkbox-group {
+            display: flex;
+            align-items: flex-start;
+            gap: 10px;
+            margin-bottom: 20px;
+        }
+
+        .checkbox-group input[type="checkbox"] {
+            width: auto;
+            margin: 0;
+        }
+
+        .checkbox-group label {
+            margin: 0;
+            font-size: 12px;
+            color: rgba(255, 255, 255, 0.7);
+            line-height: 1.4;
+        }
+
+        .submit-btn {
+            width: 100%;
+            background: linear-gradient(135deg, #00ffff 0%, #ff00ff 100%);
+            color: #000;
+            border: none;
+            padding: 14px 20px;
+            border-radius: 25px;
+            font-weight: 600;
+            font-size: 16px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .submit-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 25px rgba(0, 255, 255, 0.4);
+        }
+
+        /* Specific Form Variants */
+        .hero-form {
+            border-color: rgba(0, 255, 255, 0.3);
+        }
+
+        .discovery-form {
+            border-color: rgba(255, 0, 255, 0.3);
+        }
+
+        .discovery-form .form-title {
+            color: #ff00ff;
+        }
+
+        .future-form {
+            border-color: rgba(255, 215, 0, 0.3);
+        }
+
+        .future-form .form-title {
+            color: #ffd700;
+        }
+
+        .why-form {
+            border-color: rgba(0, 255, 0, 0.3);
+        }
+
+        .why-form .form-title {
+            color: #00ff00;
+        }
+
+        .cta-form {
+            border-color: rgba(255, 255, 255, 0.3);
+            grid-column: 1 / -1;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        .cta-form .form-title {
+            color: #ffffff;
+            font-size: 28px;
+        }
+
+        .benefit-list {
+            list-style: none;
+            margin-bottom: 20px;
+        }
+
+        .benefit-list li {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            margin-bottom: 8px;
+            font-size: 13px;
+            color: rgba(255, 255, 255, 0.7);
+        }
+
+        .benefit-list li::before {
+            content: '✓';
+            background: linear-gradient(135deg, #00ff00 0%, #00ffff 100%);
+            color: #000;
+            width: 16px;
+            height: 16px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 10px;
+            font-weight: bold;
+            flex-shrink: 0;
+        }
+
+        .urgency-badge {
+            display: inline-block;
+            background: linear-gradient(45deg, #ff4444, #ff00ff);
+            color: #fff;
+            padding: 6px 12px;
+            border-radius: 15px;
+            font-size: 12px;
+            font-weight: 600;
+            margin-bottom: 15px;
+            animation: pulse 2s infinite;
+        }
+
+        @keyframes pulse {
+            0%, 100% { box-shadow: 0 0 10px rgba(255, 68, 68, 0.3); }
+            50% { box-shadow: 0 0 20px rgba(255, 68, 68, 0.6); }
+        }
+
+        /* Age Selection Styles */
+        .age-selection {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 10px;
+            margin-bottom: 20px;
+        }
+
+        .age-option {
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            border-radius: 10px;
+            padding: 15px 10px;
+            text-align: center;
+            cursor: pointer;
+            transition: all 0.3s;
+            position: relative;
+        }
+
+        .age-option:hover {
+            border-color: #00ffff;
+            background: rgba(0, 255, 255, 0.1);
+        }
+
+        .age-option.selected {
+            border-color: #ff00ff;
+            background: rgba(255, 0, 255, 0.1);
+        }
+
+        .age-option input[type="radio"] {
+            display: none;
+        }
+
+        .age-range {
+            font-size: 14px;
+            font-weight: 600;
+            color: #ffffff;
+            display: block;
+            margin-bottom: 5px;
+        }
+
+        .product-name {
+            font-size: 12px;
+            color: rgba(255, 255, 255, 0.7);
+        }
+
+        /* Interest Indicators */
+        .interest-indicators {
+            display: flex;
+            gap: 10px;
+            flex-wrap: wrap;
+            margin-bottom: 20px;
+        }
+
+        .interest-tag {
+            background: rgba(0, 255, 255, 0.1);
+            border: 1px solid rgba(0, 255, 255, 0.3);
+            border-radius: 15px;
+            padding: 6px 12px;
+            font-size: 12px;
+            cursor: pointer;
+            transition: all 0.3s;
+            position: relative;
+        }
+
+        .interest-tag:hover {
+            background: rgba(0, 255, 255, 0.2);
+            border-color: rgba(0, 255, 255, 0.5);
+        }
+
+        .interest-tag.selected {
+            background: rgba(255, 0, 255, 0.2);
+            border-color: #ff00ff;
+            color: #ff00ff;
+        }
+
+        .interest-tag input[type="checkbox"] {
+            display: none;
+        }
+
+        /* Success/Error Messages */
+        .success-message, .error-message {
+            display: none;
+            padding: 15px;
+            border-radius: 10px;
+            margin-top: 15px;
+            text-align: center;
+        }
+
+        .success-message {
+            background: rgba(0, 255, 0, 0.1);
+            border: 1px solid rgba(0, 255, 0, 0.3);
+            color: #00ff00;
+        }
+
+        .error-message {
+            background: rgba(255, 0, 0, 0.1);
+            border: 1px solid rgba(255, 0, 0, 0.3);
+            color: #ff4444;
+        }
+
+        /* Interactive Timeline Form */
+        .timeline-form {
+            border-color: rgba(255, 255, 255, 0.3);
+        }
+
+        .timeline-steps {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 30px;
+            position: relative;
+        }
+
+        .timeline-steps::before {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 0;
+            right: 0;
+            height: 2px;
+            background: rgba(255, 255, 255, 0.2);
+            z-index: 1;
+        }
+
+        .timeline-step {
+            background: rgba(255, 255, 255, 0.1);
+            border: 2px solid rgba(255, 255, 255, 0.3);
+            border-radius: 50%;
+            width: 50px;
+            height: 50px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+            cursor: pointer;
+            transition: all 0.3s;
+            position: relative;
+            z-index: 2;
+        }
+
+        .timeline-step.active {
+            background: linear-gradient(45deg, #00ffff, #ff00ff);
+            color: #000;
+            border-color: #ffffff;
+        }
+
+        .timeline-step.completed {
+            background: #00ff00;
+            color: #000;
+            border-color: #00ff00;
+        }
+
+        .step-content {
+            display: none;
+        }
+
+        .step-content.active {
+            display: block;
+        }
+
+        /* Mobile Responsiveness */
+        @media (max-width: 768px) {
+            .forms-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .lead-form {
+                padding: 20px;
+            }
+            
+            .form-title {
+                font-size: 20px;
+            }
+
+            .age-selection {
+                grid-template-columns: 1fr;
+            }
+
+            .timeline-steps {
+                flex-direction: column;
+                gap: 20px;
+            }
+
+            .timeline-steps::before {
+                display: none;
+            }
+        }
     </style>
 </head>
 <body>
@@ -2875,7 +3318,109 @@
                 </a>
             </div>
         </div>
+
+
     </section>
+
+ <form class="lead-form cta-form" data-form-type="main-cta">
+            <div class="form-header">
+                <div class="urgency-badge">⚡ Limited spots available this quarter</div>
+                <h3 class="form-title">Start Your Child's Creative Journey</h3>
+                <p class="form-subtitle">Join thousands of families building their children's creative future with Innoyan</p>
+            </div>
+            
+            <div class="form-group">
+                <label for="cta-parent-name">Parent/Guardian Name *</label>
+                <input type="text" id="cta-parent-name" name="parent_name" required>
+            </div>
+            
+            <div class="form-group">
+                <label for="cta-email">Email Address *</label>
+                <input type="email" id="cta-email" name="email" required>
+            </div>
+            
+            <div class="form-group">
+                <label for="cta-phone">Phone Number *</label>
+                <input type="tel" id="cta-phone" name="phone" required>
+            </div>
+            
+            <div class="form-group">
+                <label for="cta-child-name">Child's Name *</label>
+                <input type="text" id="cta-child-name" name="child_name" required>
+            </div>
+            
+            <div class="form-group">
+                <label for="cta-child-age">Child's Age *</label>
+                <select id="cta-child-age" name="child_age" required>
+                    <option value="">Select age</option>
+                    <option value="5">5 years</option>
+                    <option value="6">6 years</option>
+                    <option value="7">7 years</option>
+                    <option value="8">8 years</option>
+                    <option value="9">9 years</option>
+                    <option value="10">10 years</option>
+                    <option value="11">11 years</option>
+                    <option value="12">12 years</option>
+                    <option value="13">13 years</option>
+                    <option value="14">14 years</option>
+                    <option value="15">15 years</option>
+                    <option value="16">16 years</option>
+                    <option value="17">17 years</option>
+                    <option value="18">18 years</option>
+                    <option value="19">19 years</option>
+                    <option value="20">20 years</option>
+                    <option value="21">21 years</option>
+                    <option value="22">22 years</option>
+                    <option value="23">23 years</option>
+                    <option value="24">24 years</option>
+                    <option value="25">25 years</option>
+                </select>
+            </div>
+            
+            <div class="form-group">
+                <label for="cta-product-interest">Most Interested In *</label>
+                <select id="cta-product-interest" name="product_interest" required>
+                    <option value="">Select primary interest</option>
+                    <option value="playbox">Innoyan Playbox (Ages 5-12)</option>
+                    <option value="club">Club Innoyan (Ages 13-18)</option>
+                    <option value="garage">Innoyan Garage (Ages 18-25)</option>
+                    <option value="multiple">Multiple products</option>
+                    <option value="not-sure">Not sure yet</option>
+                </select>
+            </div>
+            
+            <div class="form-group">
+                <label for="cta-urgency">How soon would you like to start?</label>
+                <select id="cta-urgency" name="urgency">
+                    <option value="">Select timeline</option>
+                    <option value="this-week">This week</option>
+                    <option value="this-month">This month</option>
+                    <option value="next-month">Next month</option>
+                    <option value="next-quarter">Next quarter</option>
+                    <option value="exploring">Just exploring options</option>
+                </select>
+            </div>
+            
+            <div class="form-group">
+                <label for="cta-message">Tell us about your child's interests</label>
+                <textarea id="cta-message" name="message" rows="3" placeholder="What does your child love to do? What are your hopes for their development?"></textarea>
+            </div>
+            
+            <div class="checkbox-group">
+                <input type="checkbox" id="cta-consent" name="consent" required>
+                <label for="cta-consent">I agree to receive communications from Innoyan and understand that my information will be used to provide relevant updates about programs for my child.</label>
+            </div>
+            
+            <div class="checkbox-group">
+                <input type="checkbox" id="cta-priority" name="priority">
+                <label for="cta-priority">Priority contact - I'm ready to enroll and want immediate follow-up.</label>
+            </div>
+            
+            <button type="submit" class="submit-btn">Start The Creative Journey</button>
+            <div class="success-message">Welcome to the Innoyan family! Our team will contact you within 4 hours to get started.</div>
+            <div class="error-message">Please complete all required fields and accept the terms.</div>
+        </form>
+    </div>
 
     <script>
         // Carousel functionality
@@ -3305,6 +3850,310 @@
 
             // Start auto-slide
             startAutoSlide();
+        });
+
+                // Age selection functionality
+        document.querySelectorAll('.age-option').forEach(option => {
+            option.addEventListener('click', function() {
+                const radio = this.querySelector('input[type="radio"]');
+                
+                // Remove selected class from all options in this group
+                this.closest('.age-selection').querySelectorAll('.age-option').forEach(opt => {
+                    opt.classList.remove('selected');
+                });
+                
+                // Add selected class to clicked option
+                this.classList.add('selected');
+                radio.checked = true;
+            });
+        });
+
+        // Interest tag functionality
+        document.querySelectorAll('.interest-tag').forEach(tag => {
+            tag.addEventListener('click', function() {
+                const checkbox = this.querySelector('input[type="checkbox"]');
+                checkbox.checked = !checkbox.checked;
+                
+                if (checkbox.checked) {
+                    this.classList.add('selected');
+                } else {
+                    this.classList.remove('selected');
+                }
+            });
+        });
+
+        // Timeline form functionality
+        let currentTimelineStep = 1;
+
+        function nextTimelineStep(step) {
+            const current = document.querySelector(`.step-content[data-step="${step}"]`);
+            const requiredFields = current.querySelectorAll('[required]');
+            let isValid = true;
+            
+            // Validate required fields
+            requiredFields.forEach(field => {
+                if (!field.value.trim()) {
+                    isValid = false;
+                    field.style.borderColor = '#ff4444';
+                } else {
+                    field.style.borderColor = 'rgba(255, 255, 255, 0.2)';
+                }
+            });
+            
+            if (!isValid) return;
+            
+            // Hide current step
+            current.classList.remove('active');
+            
+            // Show next step
+            const next = step + 1;
+            const nextStep = document.querySelector(`.step-content[data-step="${next}"]`);
+            nextStep.classList.add('active');
+            
+            // Update timeline indicators
+            const currentIndicator = document.querySelector(`.timeline-step[data-step="${step}"]`);
+            const nextIndicator = document.querySelector(`.timeline-step[data-step="${next}"]`);
+            
+            currentIndicator.classList.remove('active');
+            currentIndicator.classList.add('completed');
+            nextIndicator.classList.add('active');
+            
+            currentTimelineStep = next;
+        }
+        
+        function prevTimelineStep(step) {
+            // Hide current step
+            const current = document.querySelector(`.step-content[data-step="${step}"]`);
+            current.classList.remove('active');
+            
+            // Show previous step
+            const prev = step - 1;
+            const prevStep = document.querySelector(`.step-content[data-step="${prev}"]`);
+            prevStep.classList.add('active');
+            
+            // Update timeline indicators
+            const currentIndicator = document.querySelector(`.timeline-step[data-step="${step}"]`);
+            const prevIndicator = document.querySelector(`.timeline-step[data-step="${prev}"]`);
+            
+            currentIndicator.classList.remove('active');
+            prevIndicator.classList.remove('completed');
+            prevIndicator.classList.add('active');
+            
+            currentTimelineStep = prev;
+        }
+
+        // Form submission handler
+        document.querySelectorAll('.lead-form').forEach(form => {
+            form.addEventListener('submit', function(e) {
+                e.preventDefault();
+                
+                const formType = this.getAttribute('data-form-type');
+                const successMsg = this.querySelector('.success-message');
+                const errorMsg = this.querySelector('.error-message');
+                const submitBtn = this.querySelector('.submit-btn:last-of-type') || this.querySelector('.submit-btn');
+                
+                // Hide previous messages
+                successMsg.style.display = 'none';
+                errorMsg.style.display = 'none';
+                
+                // Get form data
+                const formData = new FormData(this);
+                const data = Object.fromEntries(formData);
+                
+                // Handle multiple selections
+                const interests = Array.from(this.querySelectorAll('input[name="interests"]:checked')).map(cb => cb.value);
+                const contentInterests = Array.from(this.querySelectorAll('input[name="content_interests"]:checked')).map(cb => cb.value);
+                const goals = Array.from(this.querySelectorAll('input[name="goals"]:checked')).map(cb => cb.value);
+                
+                if (interests.length > 0) data.interests = interests;
+                if (contentInterests.length > 0) data.content_interests = contentInterests;
+                if (goals.length > 0) data.goals = goals;
+                
+                // Basic validation
+                const requiredFields = this.querySelectorAll('[required]');
+                let isValid = true;
+                
+                requiredFields.forEach(field => {
+                    if (!field.value.trim()) {
+                        isValid = false;
+                        field.style.borderColor = '#ff4444';
+                    } else {
+                        field.style.borderColor = 'rgba(255, 255, 255, 0.2)';
+                    }
+                });
+                
+                // Special validation for product discovery form
+                if (formType === 'product-discovery' && interests.length === 0) {
+                    isValid = false;
+                    errorMsg.textContent = 'Please select at least one interest for your child.';
+                }
+                
+                if (!isValid) {
+                    errorMsg.style.display = 'block';
+                    return;
+                }
+                
+                // Show loading state
+                submitBtn.disabled = true;
+                submitBtn.textContent = 'Processing...';
+                
+                // Simulate form submission (replace with actual API call)
+                setTimeout(() => {
+                    console.log(`Form submitted - Type: ${formType}`, data);
+                    
+                    // Show success message
+                    successMsg.style.display = 'block';
+                    
+                    // Reset form
+                    this.reset();
+                    
+                    // Reset selections
+                    document.querySelectorAll('.age-option.selected, .interest-tag.selected').forEach(option => {
+                        option.classList.remove('selected');
+                    });
+                    
+                    // Reset timeline form
+                    if (formType === 'timeline') {
+                        document.querySelectorAll('.step-content').forEach(step => step.classList.remove('active'));
+                        document.querySelectorAll('.timeline-step').forEach(step => {
+                            step.classList.remove('active', 'completed');
+                        });
+                        document.querySelector('.step-content[data-step="1"]').classList.add('active');
+                        document.querySelector('.timeline-step[data-step="1"]').classList.add('active');
+                        currentTimelineStep = 1;
+                    }
+                    
+                    // Reset button
+                    submitBtn.disabled = false;
+                    submitBtn.textContent = getOriginalButtonText(formType);
+                    
+                    // Track conversion
+                    trackFormSubmission(formType, data);
+                    
+                }, 1500);
+            });
+        });
+        
+        function getOriginalButtonText(formType) {
+            const buttonTexts = {
+                'hero': 'Book Free Discovery Call',
+                'product-discovery': 'Get Personalized Recommendations',
+                'future-skills': 'Get Skills Assessment',
+                'educational': 'Access Resource Library',
+                'timeline': 'Complete Journey Planning',
+                'main-cta': 'Start The Creative Journey'
+            };
+            return buttonTexts[formType] || 'Submit';
+        }
+        
+        function trackFormSubmission(formType, data) {
+            // Replace with actual analytics tracking
+            console.log('Tracking form submission:', {
+                event: 'homepage_form_submission',
+                form_type: formType,
+                child_age: data.child_age,
+                parent_email: data.email,
+                product_interest: data.product_interest || data.age_range
+            });
+            
+            // Example: Google Analytics 4
+            // gtag('event', 'form_submission', {
+            //     form_type: formType,
+            //     child_age: data.child_age,
+            //     product_interest: data.product_interest
+            // });
+            
+            // Example: Facebook Pixel
+            // fbq('track', 'Lead', {
+            //     content_name: formType,
+            //     content_category: 'creative_learning',
+            //     value: data.child_age
+            // });
+        }
+        
+        // Real-time validation
+        document.querySelectorAll('input[required], select[required]').forEach(field => {
+            field.addEventListener('blur', function() {
+                if (!this.value.trim()) {
+                    this.style.borderColor = '#ff4444';
+                } else {
+                    this.style.borderColor = '#00ffff';
+                }
+            });
+        });
+        
+        // Email validation
+        document.querySelectorAll('input[type="email"]').forEach(field => {
+            field.addEventListener('blur', function() {
+                const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+                if (this.value && !emailRegex.test(this.value)) {
+                    this.style.borderColor = '#ff4444';
+                } else if (this.value) {
+                    this.style.borderColor = '#00ffff';
+                }
+            });
+        });
+        
+        // Phone validation for Indian numbers
+        document.querySelectorAll('input[type="tel"]').forEach(field => {
+            field.addEventListener('input', function() {
+                // Remove non-digit characters except +, space, and -
+                this.value = this.value.replace(/[^\d+\s-]/g, '');
+                
+                // Add +91 prefix if not present and length suggests it's an Indian number
+                if (this.value.length > 0 && !this.value.startsWith('+91') && !this.value.startsWith('91')) {
+                    if (this.value.length === 10) {
+                        this.value = '+91 ' + this.value;
+                    }
+                }
+            });
+        });
+        
+        // Age-based recommendations
+        document.querySelectorAll('select[name="child_age"]').forEach(ageSelect => {
+            ageSelect.addEventListener('change', function() {
+                const age = parseInt(this.value);
+                const form = this.closest('.lead-form');
+                
+                // Show product recommendations based on age
+                let recommendation = '';
+                if (age >= 5 && age <= 12) {
+                    recommendation = 'Based on your child\'s age, Innoyan Playbox would be perfect for building foundational creative skills!';
+                } else if (age >= 13 && age <= 18) {
+                    recommendation = 'Club Innoyan is ideal for your teenager to develop real-world projects and portfolios!';
+                } else if (age >= 18 && age <= 25) {
+                    recommendation = 'Innoyan Garage can help your young adult build ventures alongside their education!';
+                }
+                
+                // Display recommendation if element exists
+                let recElement = form.querySelector('.age-recommendation');
+                if (!recElement && recommendation) {
+                    recElement = document.createElement('div');
+                    recElement.className = 'age-recommendation';
+                    recElement.style.cssText = 'background: rgba(0,255,255,0.1); border: 1px solid rgba(0,255,255,0.3); border-radius: 8px; padding: 12px; margin-top: 10px; font-size: 13px; color: #00ffff;';
+                    this.parentElement.appendChild(recElement);
+                }
+                
+                if (recElement) {
+                    recElement.textContent = recommendation;
+                }
+            });
+        });
+        
+        // Initialize forms with animations
+        document.addEventListener('DOMContentLoaded', function() {
+            const forms = document.querySelectorAll('.lead-form');
+            forms.forEach((form, index) => {
+                form.style.animationDelay = `${index * 0.1}s`;
+                form.style.opacity = '0';
+                form.style.transform = 'translateY(20px)';
+                
+                setTimeout(() => {
+                    form.style.transition = 'all 0.6s ease';
+                    form.style.opacity = '1';
+                    form.style.transform = 'translateY(0)';
+                }, index * 100);
+            });
         });
     </script>
 </body>
