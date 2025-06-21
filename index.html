@@ -2271,7 +2271,7 @@
             z-index: 1000;
         }
 
-        /* .cta-button {
+        .cta-buttonform {
             background: linear-gradient(135deg, #00ffff 0%, #ff00ff 100%);
             color: #000;
             border: none;
@@ -2290,15 +2290,15 @@
             animation: float 3s ease-in-out infinite;
         }
 
-        .cta-button:hover {
+        .cta-buttonform:hover {
             transform: translateY(-3px) scale(1.05);
             box-shadow: 0 8px 30px rgba(0, 255, 255, 0.5);
         }
 
-        .cta-button .icon {
+        .cta-buttonform .icon {
             font-size: 16px;
             animation: pulse 2s infinite;
-        } */
+        }
 
         @keyframes float {
             0%, 100% { transform: translateY(0px); }
@@ -2311,7 +2311,7 @@
         }
 
         /* Hover tooltip */
-        .cta-button::before {
+        .cta-buttonform::before {
             content: 'Start Your Child\'s Creative Journey →';
             position: absolute;
             right: 100%;
@@ -2329,7 +2329,7 @@
             transition: opacity 0.3s ease;
         }
 
-        .cta-button:hover::before {
+        .cta-buttonform:hover::before {
             opacity: 1;
         }
 
@@ -2683,12 +2683,12 @@
                 right: 20px;
             }
 
-            .cta-button {
+            .cta-buttonform {
                 padding: 12px 20px;
                 font-size: 12px;
             }
 
-            .cta-button::before {
+            .cta-buttonform::before {
                 display: none; /* Hide tooltip on mobile */
             }
 
@@ -3351,7 +3351,7 @@
 
      <!-- ===== FLOATING CTA BUTTON ===== -->
         <div class="floating-cta">
-            <button class="cta-button" onclick="openModal()">
+            <button class="cta-buttonform" onclick="openModal()">
                 <span class="icon">🚀</span>
                 <span>Start Journey</span>
             </button>
