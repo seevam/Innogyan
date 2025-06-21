@@ -2899,9 +2899,12 @@
     </section> -->
 
     <!-- Designed to Inspire Section -->
-<section class="section designed-to-inspire" id="designed-to-inspire">
-    <div class="container">
-        <h2 class="section-title fade-in">Designed to Inspire</h2>
+    <section class="why-innoyan" id="why-innoyan">
+        <div class="container">
+            <div class="why-header fade-in">
+                <h2 class="why-title">
+                     Designed <span class="highlight">to Inspire</span>
+                </h2>
         <p class="section-subtitle fade-in">Explore hands-on learning experiences across different STEAM categories</p>
         
         <!-- Category Navigation -->
@@ -3317,8 +3320,14 @@
             <h2 class="fade-in">Is Your Child Ready To Build?</h2>
             <p class="fade-in">Innoyan is where their creative journey begins — and where future leaders are shaped.</p>
             <div class="cta-buttons fade-in">
-                <a href="#start" class="cta-button">Start The Journey</a>
-                <a href="#call" class="secondary-cta">Book A Discovery Call</a>
+                <button class="cta-buttonform" onclick="openModal()">
+                    <span class="icon">🚀</span>
+                    <span>Start Journey</span>
+                </button>
+                
+                <button class="secondary-cta" onclick="openModal()">
+                    Book A Discovery Call
+                </button>
             </div>
         </div>
     </section>
@@ -3363,9 +3372,9 @@
                     <span class="info-icon">ℹ️</span>
                 </p>
                 
-                <a href="#start" class="get-started-btn fade-in">
-                    Get started →
-                </a>
+                <button class="secondary-cta" onclick="openModal()">
+                    Get Started
+                </button>
             </div>
         </div>
     </section>
