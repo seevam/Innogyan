@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -205,6 +204,7 @@
             box-shadow: 0 10px 30px rgba(0, 255, 255, 0.2);
             transition: all 0.4s ease;
             overflow: hidden;
+            z-index: 999;
         }
 
         .sticky-subscription.minimized {
@@ -214,12 +214,14 @@
             top: auto !important;
             left: auto !important;
             width: 200px !important;
-            padding: 20px;
+            height: auto !important;
+            padding: 20px !important;
             border-radius: 20px;
-            z-index: 1000;
+            z-index: 1000 !important;
             text-align: center;
             box-shadow: 0 10px 40px rgba(0, 255, 255, 0.4);
             transform: none !important;
+            margin: 0 !important;
         }
 
         .subscription-main {
@@ -375,6 +377,8 @@
             font-weight: 600;
             transition: all 0.3s;
             margin-bottom: 15px;
+            position: relative;
+            overflow: hidden;
         }
 
         .subscribe-btn:hover {
@@ -702,7 +706,12 @@
             font-size: 80px;
             margin-bottom: 20px;
             filter: drop-shadow(0 10px 20px rgba(0, 0, 0, 0.3));
-            animation: float 3s ease-in-out infinite;
+            animation: slideFloat 3s ease-in-out infinite;
+        }
+
+        @keyframes slideFloat {
+            0%, 100% { transform: translateY(0px); }
+            50% { transform: translateY(-10px); }
         }
 
         .slide-title {
@@ -1109,15 +1118,6 @@
         }
 
         /* Animations */
-        @keyframes float {
-            0%, 100% { transform: translateY(0px); }
-            50% { transform: translateY(-10px); }
-        }
-
-        .fade-in {
-            animation: fadeInUp 0.8s ease-out;
-        }
-
         @keyframes fadeInUp {
             from {
                 opacity: 0;
@@ -1126,6 +1126,14 @@
             to {
                 opacity: 1;
                 transform: translateY(0);
+            }
+        }
+
+        /* Ripple Effect */
+        @keyframes ripple {
+            to {
+                transform: scale(4);
+                opacity: 0;
             }
         }
     </style>
@@ -1158,6 +1166,8 @@
             
             <div class="sticky-subscription" id="subscription-box">
                 <button class="minimized-close" onclick="toggleMinimized()">×</button>
+                <!-- DEBUG: Add test button -->
+                
                 <div class="subscription-main">
                     <h3>Start Your Club Journey</h3>
                     <div class="price">₹1,999/month</div>
@@ -1517,72 +1527,143 @@
             observer.observe(el);
         });
 
-        // Sticky subscription box behavior
+        // Sticky subscription box behavior - FIXED VERSION
         function handleSubscriptionBox() {
             const subscriptionBox = document.getElementById('subscription-box');
             const heroSection = document.querySelector('.hero');
             
             if (subscriptionBox && heroSection && window.innerWidth > 968) {
-                const heroRect = heroSection.getBoundingClientRect();
                 const scrolled = window.pageYOffset;
+                const heroHeight = heroSection.offsetHeight;
                 
-                if (heroRect.bottom <= 100) {
-                    // Only apply sticky positioning if not manually minimized
-                    if (!subscriptionBox.classList.contains('user-minimized')) {
-                        // Add minimized state when scrolled down significantly
-                        if (scrolled > window.innerHeight * 0.8) {
-                            subscriptionBox.classList.add('minimized');
-                            // Clear any inline styles that might interfere
-                            subscriptionBox.style.position = '';
-                            subscriptionBox.style.top = '';
-                            subscriptionBox.style.right = '';
-                            subscriptionBox.style.width = '';
-                        } else {
-                            subscriptionBox.classList.remove('minimized');
-                            subscriptionBox.style.position = 'fixed';
-                            subscriptionBox.style.top = '100px';
-                            subscriptionBox.style.right = '20px';
-                            subscriptionBox.style.width = '320px';
-                            subscriptionBox.style.zIndex = '999';
-                        }
+                // Skip if user manually minimized
+                if (subscriptionBox.classList.contains('user-minimized')) {
+                    return;
+                }
+                
+                // Auto-minimize when scrolled past hero section
+                if (scrolled > heroHeight - 200) {
+                    if (!subscriptionBox.classList.contains('minimized')) {
+                        subscriptionBox.classList.add('minimized');
+                        
+                        // MOVE THE ELEMENT OUT OF THE GRID CONTAINER
+                        const originalParent = subscriptionBox.parentElement;
+                        subscriptionBox.setAttribute('data-original-parent', 'hero-content');
+                        document.body.appendChild(subscriptionBox);
+                        
+                        // FORCE positioning with highest priority
+                        subscriptionBox.style.cssText = `
+                            position: fixed !important;
+                            bottom: 20px !important;
+                            right: 20px !important;
+                            top: auto !important;
+                            left: auto !important;
+                            width: 200px !important;
+                            height: auto !important;
+                            z-index: 9999 !important;
+                            transform: none !important;
+                            margin: 0 !important;
+                        `;
+                        
+                        console.log('MINIMIZED - Moved to body and positioned');
                     }
                 } else {
-                    if (!subscriptionBox.classList.contains('user-minimized')) {
+                    if (subscriptionBox.classList.contains('minimized')) {
                         subscriptionBox.classList.remove('minimized');
-                        subscriptionBox.style.position = 'sticky';
-                        subscriptionBox.style.top = '100px';
-                        subscriptionBox.style.right = 'auto';
-                        subscriptionBox.style.width = 'auto';
+                        
+                        // MOVE BACK TO ORIGINAL PARENT
+                        const heroContent = document.querySelector('.hero-content');
+                        if (heroContent) {
+                            heroContent.appendChild(subscriptionBox);
+                        }
+                        subscriptionBox.removeAttribute('data-original-parent');
+                        
+                        // Clear ALL inline styles
+                        subscriptionBox.style.cssText = '';
+                        console.log('EXPANDED - Moved back to original parent');
                     }
                 }
             }
         }
 
-        // Function to toggle minimized state manually
+        // Function to toggle minimized state manually - FIXED
         function toggleMinimized() {
             const subscriptionBox = document.getElementById('subscription-box');
             if (subscriptionBox.classList.contains('minimized')) {
+                // Expand back to normal
                 subscriptionBox.classList.remove('minimized', 'user-minimized');
-                // Clear inline styles and restore normal positioning
-                subscriptionBox.style.position = '';
-                subscriptionBox.style.top = '';
-                subscriptionBox.style.right = '';
-                subscriptionBox.style.width = '';
-                subscriptionBox.style.bottom = '';
-                subscriptionBox.style.left = '';
-                handleSubscriptionBox();
+                
+                // Move back to original parent
+                const heroContent = document.querySelector('.hero-content');
+                if (heroContent && subscriptionBox.parentElement !== heroContent) {
+                    heroContent.appendChild(subscriptionBox);
+                }
+                subscriptionBox.removeAttribute('data-original-parent');
+                subscriptionBox.style.cssText = ''; // Clear ALL styles
+                console.log('Manually expanded - moved back to hero');
             } else {
+                // Minimize manually
                 subscriptionBox.classList.add('minimized', 'user-minimized');
-                // Clear any conflicting inline styles
-                subscriptionBox.style.position = '';
-                subscriptionBox.style.top = '';
-                subscriptionBox.style.right = '';
-                subscriptionBox.style.width = '';
+                
+                // Move to body for free positioning
+                if (subscriptionBox.parentElement !== document.body) {
+                    subscriptionBox.setAttribute('data-original-parent', 'hero-content');
+                    document.body.appendChild(subscriptionBox);
+                }
+                
+                subscriptionBox.style.cssText = `
+                    position: fixed !important;
+                    bottom: 20px !important;
+                    right: 20px !important;
+                    top: auto !important;
+                    left: auto !important;
+                    width: 200px !important;
+                    height: auto !important;
+                    z-index: 9999 !important;
+                    transform: none !important;
+                    margin: 0 !important;
+                `;
+                console.log('Manually minimized - moved to body');
             }
         }
 
+        // Test function for debugging - UPDATED
+        function testMinimize() {
+            const subscriptionBox = document.getElementById('subscription-box');
+            console.log('TEST: Current parent:', subscriptionBox.parentElement.className);
+            console.log('TEST: Current position:', subscriptionBox.getBoundingClientRect());
+            
+            // Move to body and minimize
+            document.body.appendChild(subscriptionBox);
+            subscriptionBox.classList.add('minimized');
+            subscriptionBox.style.cssText = `
+                position: fixed !important;
+                bottom: 20px !important;
+                right: 20px !important;
+                top: auto !important;
+                left: auto !important;
+                width: 200px !important;
+                height: auto !important;
+                z-index: 9999 !important;
+                transform: none !important;
+                margin: 0 !important;
+            `;
+            
+            setTimeout(() => {
+                console.log('TEST AFTER: New parent:', subscriptionBox.parentElement.tagName);
+                console.log('TEST AFTER: New position:', subscriptionBox.getBoundingClientRect());
+            }, 500);
+        }
+        
+        // Initialize subscription box behavior
         window.addEventListener('scroll', handleSubscriptionBox);
         window.addEventListener('resize', handleSubscriptionBox);
+        
+        // Test the subscription box on page load
+        setTimeout(() => {
+            console.log('Testing subscription box...');
+            handleSubscriptionBox();
+        }, 1000);
 
         // Smooth scrolling for navigation links
         document.querySelectorAll('a[href^="#"]').forEach(anchor => {
@@ -1650,7 +1731,7 @@
         });
 
         // CTA button interactions with ripple effect
-        document.querySelectorAll('.hero-cta, .secondary-cta').forEach(btn => {
+        document.querySelectorAll('.hero-cta, .secondary-cta, .subscribe-btn').forEach(btn => {
             btn.addEventListener('click', function(e) {
                 e.preventDefault();
                 
@@ -1681,23 +1762,6 @@
                 }, 150);
             });
         });
-
-        // Add CSS for ripple animation
-        const style = document.createElement('style');
-        style.textContent = `
-            @keyframes ripple {
-                to {
-                    transform: scale(4);
-                    opacity: 0;
-                }
-            }
-            
-            .hero-cta, .secondary-cta {
-                position: relative;
-                overflow: hidden;
-            }
-        `;
-        document.head.appendChild(style);
 
         // Dynamic navbar background
         window.addEventListener('scroll', () => {
