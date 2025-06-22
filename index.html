@@ -209,12 +209,12 @@
     min-height: 100vh;
     display: flex;
     align-items: center;
-    justify-content: center;
-    text-align: center;
+    justify-content: flex-start;
+    text-align: left;
     
     /* Add background image first */
     background-image: 
-        linear-gradient(135deg, rgba(10,10,10,0.8) 0%, rgba(26,26,46,0.8) 50%, rgba(22,33,62,0.8) 100%),
+        linear-gradient(135deg, rgb(10, 10, 10) 0%, rgb(2, 2, 26) 30%, rgba(220, 223, 232, 0) 100%),
         url('https://i.postimg.cc/7LHtJ3Hv/Whats-App-Image-2025-06-21-at-14-08-52.jpg');
     background-size: cover;
     background-position: center center;
@@ -263,7 +263,8 @@
 
         .hero-content {
             max-width: 800px;
-            margin: 0 auto;
+            margin: 0; /* Remove 'auto' centering */
+            margin-left: 50px; /* Push to left with some spacing */
             padding: 0 20px;
             position: relative;
             z-index: 2;
