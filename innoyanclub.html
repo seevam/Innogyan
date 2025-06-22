@@ -93,6 +93,8 @@
             position: relative;
             overflow: hidden;
             padding-top: 80px;
+            z-index: 1;
+            isolation: isolate;
         }
 
         .hero::before {
@@ -104,6 +106,7 @@
             bottom: 0;
             background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 1000"><defs><radialGradient id="grad1"><stop offset="0%" stop-color="rgba(0,255,255,0.2)"/><stop offset="100%" stop-color="rgba(0,255,255,0)"/></radialGradient><radialGradient id="grad2"><stop offset="0%" stop-color="rgba(255,0,255,0.1)"/><stop offset="100%" stop-color="rgba(255,0,255,0)"/></radialGradient></defs><circle cx="200" cy="200" r="3" fill="url(%23grad1)"/><circle cx="800" cy="300" r="2" fill="url(%23grad2)"/><circle cx="300" cy="700" r="4" fill="url(%23grad1)"/><circle cx="700" cy="800" r="2" fill="url(%23grad2)"/></svg>');
             animation: float 20s infinite linear;
+            z-index: -2;
         }
 
         .hero::after {
@@ -115,6 +118,7 @@
             bottom: 0;
             background: linear-gradient(45deg, transparent 30%, rgba(0, 255, 255, 0.03) 50%, transparent 70%);
             animation: scan 6s infinite;
+            z-index: -1;
         }
 
         @keyframes scan {
@@ -198,20 +202,21 @@
 
         /* Section Styles */
         .section {
-            padding: 100px 0;
+            padding: 120px 0;
             position: relative;
-        }
-
-        @media (max-width: 768px) {
-            .section {
-                padding: 60px 0;
-            }
+            z-index: 1;
+            background-clip: padding-box;
+            margin: 0;
+            clear: both;
+            display: block;
         }
 
         .container {
             max-width: 1200px;
             margin: 0 auto;
             padding: 0 20px;
+            position: relative;
+            z-index: 2;
         }
 
         .section-title {
@@ -238,6 +243,9 @@
         .outcomes-section {
             background: linear-gradient(135deg, #0f0f23 0%, #1a1a2e 100%);
             position: relative;
+            z-index: 10;
+            isolation: isolate;
+            transform: translateZ(0);
         }
 
         .outcomes-section::before {
@@ -249,6 +257,7 @@
             bottom: 0;
             background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><defs><pattern id="grid" width="10" height="10" patternUnits="userSpaceOnUse"><path d="M 10 0 L 0 0 0 10" fill="none" stroke="rgba(0,255,255,0.1)" stroke-width="0.5"/></pattern></defs><rect width="100" height="100" fill="url(%23grid)"/></svg>');
             opacity: 0.3;
+            z-index: -1;
         }
 
         .outcomes-grid {
@@ -320,6 +329,10 @@
         /* Program Structure Section */
         .program-section {
             background: linear-gradient(135deg, #1a1a2e 0%, #16213e 100%);
+            position: relative;
+            z-index: 11;
+            isolation: isolate;
+            transform: translateZ(0);
         }
 
         .explorer-quest {
@@ -443,6 +456,10 @@
         /* Mentorship Section */
         .mentorship-section {
             background: linear-gradient(135deg, #16213e 0%, #0f3460 100%);
+            position: relative;
+            z-index: 12;
+            isolation: isolate;
+            transform: translateZ(0);
         }
 
         .mentorship-grid {
@@ -489,6 +506,10 @@
         /* Why Innoyan Works */
         .works-section {
             background: linear-gradient(135deg, #0a0a0a 0%, #1a1a2e 100%);
+            position: relative;
+            z-index: 13;
+            isolation: isolate;
+            transform: translateZ(0);
         }
 
         .works-grid {
@@ -544,6 +565,9 @@
             padding: 120px 0;
             position: relative;
             overflow: hidden;
+            z-index: 14;
+            isolation: isolate;
+            transform: translateZ(0);
         }
 
         .final-cta::before {
@@ -554,17 +578,12 @@
             right: 0;
             bottom: 0;
             background: radial-gradient(ellipse at center, rgba(0, 255, 255, 0.1) 0%, transparent 70%);
+            z-index: -1;
         }
 
         .final-cta .container {
             position: relative;
             z-index: 2;
-        }
-
-        @media (max-width: 768px) {
-            .final-cta {
-                padding: 80px 0;
-            }
         }
 
         .final-cta h2 {
@@ -589,14 +608,6 @@
             gap: 20px;
             justify-content: center;
             flex-wrap: wrap;
-        }
-
-        @media (max-width: 768px) {
-            .cta-buttons {
-                flex-direction: column;
-                align-items: center;
-                gap: 15px;
-            }
         }
 
         .secondary-cta {
@@ -638,16 +649,17 @@
 
         /* Mobile Responsiveness */
         @media (max-width: 768px) {
+            .section {
+                padding: 80px 0;
+            }
+            
             .nav-links {
                 display: none;
             }
             
-            .outcomes-grid {
-                grid-template-columns: 1fr;
-                gap: 20px;
-            }
-            
-            .clubs-grid {
+            .outcomes-grid,
+            .clubs-grid,
+            .works-grid {
                 grid-template-columns: 1fr;
                 gap: 20px;
             }
@@ -657,17 +669,22 @@
                 gap: 20px;
             }
             
-            .works-grid {
-                grid-template-columns: 1fr;
-                gap: 20px;
-            }
-            
             .explorer-quest {
                 padding: 25px 20px;
             }
             
             .quest-features {
                 grid-template-columns: 1fr;
+            }
+            
+            .final-cta {
+                padding: 80px 0;
+            }
+            
+            .cta-buttons {
+                flex-direction: column;
+                align-items: center;
+                gap: 15px;
             }
         }
 
@@ -777,6 +794,62 @@
                         <h4>Impact Foundry Club</h4>
                     </div>
                     <p>Social Impact & Sustainability - Create solutions for global challenges while learning about sustainable development and social innovation.</p>
+                </div>
+                
+                <div class="club-card fade-in">
+                    <div class="club-header">
+                        <span class="club-icon">🧠</span>
+                        <h4>SolveSpace Club</h4>
+                    </div>
+                    <p>Design Thinking & Problem Solving - Learn systematic approaches to identify and solve complex real-world challenges.</p>
+                </div>
+                
+                <div class="club-card fade-in">
+                    <div class="club-header">
+                        <span class="club-icon">💻</span>
+                        <h4>Bit Builders Club</h4>
+                    </div>
+                    <p>Coding, AI & Digital Skills - Master programming languages, artificial intelligence, and cutting-edge digital technologies.</p>
+                </div>
+                
+                <div class="club-card fade-in">
+                    <div class="club-header">
+                        <span class="club-icon">🧪</span>
+                        <h4>Curiosity Club</h4>
+                    </div>
+                    <p>Research & Inquiry - Develop scientific thinking and research methodologies to explore and discover new knowledge.</p>
+                </div>
+                
+                <div class="club-card fade-in">
+                    <div class="club-header">
+                        <span class="club-icon">🚀</span>
+                        <h4>Venture Garage Club</h4>
+                    </div>
+                    <p>Entrepreneurship & Innovation - Learn to build startups, understand business models, and create market-ready solutions.</p>
+                </div>
+                
+                <div class="club-card fade-in">
+                    <div class="club-header">
+                        <span class="club-icon">🎨</span>
+                        <h4>Pixel Playhouse Club</h4>
+                    </div>
+                    <p>Visual Design & Communication - Master graphic design, UI/UX, and visual storytelling for digital and print media.</p>
+                </div>
+                
+                <div class="club-card fade-in">
+                    <div class="club-header">
+                        <span class="club-icon">🛠</span>
+                        <h4>Tinker Tank Club</h4>
+                    </div>
+                    <p>Engineering, Robotics & Prototyping - Build mechanical systems, robots, and physical prototypes that solve real problems.</p>
+                </div>
+                
+                <div class="club-card fade-in">
+                    <div class="club-header">
+                        <span class="club-icon">📣</span>
+                        <h4>Story Circuit Club</h4>
+                    </div>
+                    <p>Writing & Public Speaking - Develop powerful communication skills through creative writing and confident public speaking.</p>
                 </div>
             </div>
         </div>
@@ -890,12 +963,12 @@
             });
         });
 
-        // Parallax effect for hero background
+        // Parallax effect for hero background only
         window.addEventListener('scroll', () => {
             const scrolled = window.pageYOffset;
             const hero = document.querySelector('.hero');
-            if (hero) {
-                hero.style.transform = `translateY(${scrolled * 0.3}px)`;
+            if (hero && scrolled < window.innerHeight) {
+                hero.style.transform = `translateY(${scrolled * 0.1}px)`;
             }
         });
 
@@ -1003,15 +1076,17 @@
             });
         });
 
-        // Enhanced scroll effects
+        // Enhanced scroll effects - REMOVED to prevent overlapping
+        // Commenting out the problematic parallax section effects
+        /*
         let ticking = false;
         function updateOnScroll() {
             const scrolled = window.pageYOffset;
             
-            // Parallax for different sections
+            // Reduced parallax for different sections to prevent overlap
             const sections = document.querySelectorAll('.section');
             sections.forEach((section, index) => {
-                const rate = scrolled * (index % 2 === 0 ? -0.1 : 0.1);
+                const rate = scrolled * (index % 2 === 0 ? -0.02 : 0.02);
                 section.style.transform = `translateY(${rate}px)`;
             });
             
@@ -1024,6 +1099,7 @@
                 ticking = true;
             }
         });
+        */
 
         // Dynamic navbar background
         window.addEventListener('scroll', () => {
@@ -1038,60 +1114,4 @@
         });
     </script>
 </body>
-</html>-card fade-in">
-                    <div class="club-header">
-                        <span class="club-icon">🧠</span>
-                        <h4>SolveSpace Club</h4>
-                    </div>
-                    <p>Design Thinking & Problem Solving - Learn systematic approaches to identify and solve complex real-world challenges.</p>
-                </div>
-                
-                <div class="club-card fade-in">
-                    <div class="club-header">
-                        <span class="club-icon">💻</span>
-                        <h4>Bit Builders Club</h4>
-                    </div>
-                    <p>Coding, AI & Digital Skills - Master programming languages, artificial intelligence, and cutting-edge digital technologies.</p>
-                </div>
-                
-                <div class="club-card fade-in">
-                    <div class="club-header">
-                        <span class="club-icon">🧪</span>
-                        <h4>Curiosity Club</h4>
-                    </div>
-                    <p>Research & Inquiry - Develop scientific thinking and research methodologies to explore and discover new knowledge.</p>
-                </div>
-                
-                <div class="club-card fade-in">
-                    <div class="club-header">
-                        <span class="club-icon">🚀</span>
-                        <h4>Venture Garage Club</h4>
-                    </div>
-                    <p>Entrepreneurship & Innovation - Learn to build startups, understand business models, and create market-ready solutions.</p>
-                </div>
-                
-                <div class="club-card fade-in">
-                    <div class="club-header">
-                        <span class="club-icon">🎨</span>
-                        <h4>Pixel Playhouse Club</h4>
-                    </div>
-                    <p>Visual Design & Communication - Master graphic design, UI/UX, and visual storytelling for digital and print media.</p>
-                </div>
-                
-                <div class="club-card fade-in">
-                    <div class="club-header">
-                        <span class="club-icon">🛠</span>
-                        <h4>Tinker Tank Club</h4>
-                    </div>
-                    <p>Engineering, Robotics & Prototyping - Build mechanical systems, robots, and physical prototypes that solve real problems.</p>
-                </div>
-                
-                <div class="club-card fade-in">
-                    <div class="club-header">
-                        <span class="club-icon">📣</span>
-                        <h4>Story Circuit Club</h4>
-                    </div>
-                    <p>Writing & Public Speaking - Develop powerful communication skills through creative writing and confident public speaking.</p>
-                </div>
-                
-                <div class="club
+</html>
