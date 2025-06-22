@@ -205,16 +205,25 @@
 
         /* Hero Section */
         .hero {
-            min-height: 100vh;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            text-align: center;
-            background: linear-gradient(135deg, #0a0a0a 0%, #1a1a2e 50%, #16213e 100%);
-            position: relative;
-            overflow: hidden;
-            padding-top: 100px;
-        }
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    
+    /* Add background image first */
+    background-image: 
+        linear-gradient(135deg, rgba(10,10,10,0.8) 0%, rgba(26,26,46,0.8) 50%, rgba(22,33,62,0.8) 100%),
+        url('https://i.postimg.cc/7LHtJ3Hv/Whats-App-Image-2025-06-21-at-14-08-52.jpg');
+    background-size: cover;
+    background-position: center center;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    
+    position: relative;
+    overflow: hidden;
+    padding-top: 100px;
+}
 
         .hero::before {
             content: '';
@@ -257,6 +266,17 @@
             padding: 0 20px;
             position: relative;
             z-index: 2;
+        }
+
+        @media (max-width: 768px) {
+            .hero {
+                background-image: 
+                    linear-gradient(135deg, rgba(10,10,10,0.7) 0%, rgba(26,26,46,0.7) 50%, rgba(22,33,62,0.7) 100%),
+                    url('https://i.postimg.cc/G2XmNDhv/hero-m3.png');
+                background-attachment: scroll; /* Fixed attachment causes issues on mobile */
+                background-position: center 20%; /* Adjust focus point for mobile */
+                min-height: 80vh; /* Optional: shorter height on mobile */
+            }
         }
 
         .tagline {
@@ -2782,7 +2802,12 @@
             <p class="hero-subtitle">
                 Innoyan helps students discover what they love, build what they imagine, and confidently create real-world projects, portfolios, and startups — starting young.
             </p>
-            <a href="#programs" class="cta-button">Start The Journey</a>
+            
+        </button>
+                
+        <button class="secondary-cta" onclick="openModal()">
+            Book A Discovery Call
+        </button>
         </div>
     </section>
 
