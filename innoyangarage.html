@@ -92,12 +92,13 @@
             overflow: hidden;
             padding-top: 80px;
             background-image: 
-            linear-gradient(135deg, rgba(10,10,10,0.8) 0%, rgba(26,15,10,0.8) 50%, rgba(42,24,16,0.8) 100%),
-            url('https://i.postimg.cc/Njs3VrXG/hvg1d-v2.jpg');
+            linear-gradient(135deg, rgba(255, 255, 255, 0) 0%, rgba(26,15,10,0.8) 50%, rgba(42,24,16,0.8) 100%),
+            url('https://i.postimg.cc/pTt8P8t4/hvg1d.jpg');
             background-size: cover;
             background-position: center center;
             background-repeat: no-repeat;
             background-attachment: fixed;
+            
         }
 
         .hero::before {
@@ -131,19 +132,22 @@
             z-index: 2;
         }
 
-                @media (max-width: 768px) {
+        @media (max-width: 768px) {
             .hero {
                 background-image: 
                     linear-gradient(135deg, rgba(10,10,10,0.7) 0%, rgba(26,26,46,0.7) 50%, rgba(22,33,62,0.7) 100%),
-                    url('https://i.postimg.cc/Njs3VrXG/hvg1d-v2.jpg');
+                    url('https://i.postimg.cc/t4YFkp5S/hvg1.jpg');
                 background-attachment: scroll; /* Fixed attachment causes issues on mobile */
-                background-position: center 20%; /* Adjust focus point for mobile */
+                background-position: center; /* Adjust focus point for mobile */
                 min-height: 80vh; /* Optional: shorter height on mobile */
 
-                padding-top: 50px;
+                padding-top: 100px;
                 padding-bottom: 300px; 
             }
         }
+
+
+        
 
         @media (max-width: 968px) {
             .hero-content {
@@ -934,7 +938,7 @@
                 <p class="hero-subtitle">
                     Turn college into a launchpad — build real products, real companies, and real-world experience before you even graduate.
                 </p>
-                <a href="#subscribe" class="hero-cta">Start The Journey</a>
+                
             </div>
             
             <div class="sticky-subscription" id="subscription-box">
