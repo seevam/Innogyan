@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -91,6 +92,14 @@
             position: relative;
             overflow: hidden;
             padding-top: 80px;
+
+            background-image: 
+            linear-gradient(90deg, rgba(255, 255, 255, 0) 0%, rgba(26,26,46,0.8) 100%, rgba(22,33,62,0.8) 100%),
+            url('https://i.postimg.cc/PqvzXTvp/hpb1d.jpg');
+            background-size: cover;
+            background-position: center center;
+            background-repeat: no-repeat;
+            background-attachment: fixed;
         }
 
         .hero::before {
@@ -122,6 +131,20 @@
             align-items: center;
             position: relative;
             z-index: 2;
+        }
+
+        @media (max-width: 768px) {
+            .hero {
+                background-image: 
+                    linear-gradient(135deg, rgba(10,10,10,0.7) 0%, rgba(26,26,46,0.7) 50%, rgba(22,33,62,0.7) 100%),
+                    url('https://i.postimg.cc/VNtnyg2X/hpb1.jpg');
+                background-attachment: scroll; /* Fixed attachment causes issues on mobile */
+                background-position: center; /* Adjust focus point for mobile */
+                min-height: 80vh; /* Optional: shorter height on mobile */
+
+                padding-top: 100px;
+                padding-bottom: 300px; 
+            }
         }
 
         @media (max-width: 968px) {
@@ -2499,7 +2522,7 @@
             <div class="hero-text">
                 <h1>Spark Creativity Early — One Box at a Time.</h1>
                 <p>Hands-on science and innovation kits delivered home every 15 days — turning kids into confident young creators.</p>
-                <a href="#subscribe" class="hero-cta">Subscribe Now</a>
+                
             </div>
             
             <div class="sticky-subscription" id="subscription-box">
@@ -2864,37 +2887,7 @@
         </div>
     </section>
 
-    <!-- Sample Projects Preview -->
-    <section class="section projects-section" id="projects">
-        <div class="container">
-            <h2 class="section-title fade-in">Sample Projects Inside</h2>
-            <div class="projects-grid">
-                <div class="project-card fade-in">
-                    <span class="project-icon">⛵</span>
-                    <h3>Build a Mini Sailboat</h3>
-                    <p>Learn about buoyancy, wind power, and hydrodynamics while creating a working sailboat that actually floats and moves.</p>
-                </div>
-                
-                <div class="project-card fade-in">
-                    <span class="project-icon">🤖</span>
-                    <h3>Create a Robotic Hand</h3>
-                    <p>Understand mechanics and human anatomy by building a functional robotic hand using simple materials and hydraulics.</p>
-                </div>
-                
-                <div class="project-card fade-in">
-                    <span class="project-icon">🚗</span>
-                    <h3>Assemble a Wind-Powered Car</h3>
-                    <p>Explore renewable energy and aerodynamics by constructing a car that moves using only the power of wind.</p>
-                </div>
-                
-                <div class="project-card fade-in">
-                    <span class="project-icon">⚡</span>
-                    <h3>Experiment with Simple Circuits</h3>
-                    <p>Discover the basics of electricity and electronics through safe, engaging circuit-building activities.</p>
-                </div>
-            </div>
-        </div>
-    </section>
+   
 
     <!-- Independent Play Assurance -->
     <section class="section benefits-section">
