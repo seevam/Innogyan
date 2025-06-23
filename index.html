@@ -430,7 +430,7 @@
         } */
 
         /* Products Section */
-        .products-grid {
+        /* .products-grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
             gap: 30px;
@@ -533,7 +533,7 @@
         }
 
                 /* Products Section */
-                .products-grid {
+                /* .products-grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
             gap: 30px;
@@ -605,7 +605,7 @@
         }
 
         /* Custom SVG Icons using CSS */
-        .icon-playbox {
+        /* .icon-playbox {
             background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Cdefs%3E%3ClinearGradient id='grad1' x1='0%25' y1='0%25' x2='100%25' y2='100%25'%3E%3Cstop offset='0%25' style='stop-color:%234CAF50;stop-opacity:1' /%3E%3Cstop offset='100%25' style='stop-color:%2345a049;stop-opacity:1' /%3E%3C/linearGradient%3E%3C/defs%3E%3Crect x='20' y='25' width='60' height='45' rx='8' fill='url(%23grad1)' stroke='%23ffffff' stroke-width='2'/%3E%3Crect x='25' y='30' width='15' height='15' rx='3' fill='%23ffffff' opacity='0.8'/%3E%3Crect x='45' y='30' width='15' height='15' rx='3' fill='%23ffffff' opacity='0.8'/%3E%3Crect x='65' y='30' width='10' height='25' rx='3' fill='%23ffffff' opacity='0.8'/%3E%3Cpath d='M30 75 Q35 70 40 75 Q45 80 50 75 Q55 70 60 75 Q65 80 70 75' stroke='%234CAF50' stroke-width='3' fill='none' opacity='0.6'/%3E%3C/svg%3E");
             color: #4CAF50;
         }
@@ -625,43 +625,248 @@
             margin-bottom: 15px;
             color: #ffffff;
             font-weight: 700;
-        }
+        } */
+            /* Products Section */
+.products-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 30px;
+    margin-top: 60px;
+}
 
-        .product-card p {
-            color: rgba(255, 255, 255, 0.8);
-            margin-bottom: 25px;
-            line-height: 1.6;
-        }
+/* Responsive grid for smaller screens */
+@media (max-width: 1024px) {
+    .products-grid {
+        grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    }
+}
 
-        .age-badge {
-            display: inline-block;
-            background: linear-gradient(135deg, #00ffff, #ff00ff);
-            color: #000;
-            padding: 5px 15px;
-            border-radius: 20px;
-            font-size: 12px;
-            font-weight: 600;
-            margin-bottom: 20px;
-        }
+.product-card {
+    background: rgba(0, 0, 0, 0.8);
+    border: 1px solid rgba(0, 255, 255, 0.3);
+    border-radius: 20px;
+    padding: 40px 30px;
+    text-align: center;
+    transition: all 0.6s ease;
+    position: relative;
+    overflow: hidden;
+    height: 350px; /* Fixed height for consistent flip */
+    perspective: 1000px;
+    cursor: pointer;
+}
 
-        .learn-more {
-            color: #00ffff;
-            text-decoration: none;
-            font-weight: 600;
-            display: inline-flex;
-            align-items: center;
-            gap: 5px;
-            transition: all 0.3s;
-            text-shadow: 0 0 5px rgba(0, 255, 255, 0.5);
-        }
+.product-card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 3px;
+    background: linear-gradient(90deg, #00ffff, #ff00ff);
+    transition: all 0.6s ease;
+}
 
-        .learn-more:hover {
-            gap: 10px;
-            color: #ff00ff;
-            text-shadow: 0 0 5px rgba(255, 0, 255, 0.5);
-        }
+/* Card Inner Container for Flip Effect */
+.product-card-inner {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    text-align: center;
+    transition: transform 0.6s;
+    transform-style: preserve-3d;
+}
 
+.product-card:hover .product-card-inner {
+    transform: rotateY(180deg);
+}
 
+/* Front and Back of Card */
+.product-card-front,
+.product-card-back {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    backface-visibility: hidden;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.product-card-back {
+    transform: rotateY(180deg);
+}
+
+/* Front Side - Minimal Info */
+.product-card-front .age-badge {
+    position: absolute;
+    top: 20px;
+    left: 50%;
+    transform: translateX(-50%);
+    display: inline-block;
+    background: linear-gradient(135deg, #00ffff, #ff00ff);
+    color: #000;
+    padding: 5px 15px;
+    border-radius: 20px;
+    font-size: 12px;
+    font-weight: 600;
+}
+
+.product-card-front .product-icon {
+    width: 100px;
+    height: 100px;
+    margin: 20px auto;
+    display: block;
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center;
+    filter: drop-shadow(0 0 15px currentColor);
+    transition: all 0.3s ease;
+}
+
+.product-card-front h3 {
+    font-size: 28px;
+    color: #ffffff;
+    font-weight: 700;
+    margin-top: 20px;
+    text-shadow: 0 0 10px rgba(255, 255, 255, 0.3);
+}
+
+/* Back Side - Full Info */
+.product-card-back .age-badge {
+    display: inline-block;
+    background: linear-gradient(135deg, #00ffff, #ff00ff);
+    color: #000;
+    padding: 5px 15px;
+    border-radius: 20px;
+    font-size: 12px;
+    font-weight: 600;
+    margin-bottom: 20px;
+}
+
+.product-card-back .product-icon {
+    width: 60px;
+    height: 60px;
+    margin: 0 auto 15px;
+    display: block;
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center;
+    filter: drop-shadow(0 0 10px currentColor);
+}
+
+.product-card-back h3 {
+    font-size: 24px;
+    margin-bottom: 15px;
+    color: #ffffff;
+    font-weight: 700;
+}
+
+.product-card-back p {
+    color: rgba(255, 255, 255, 0.8);
+    margin-bottom: 25px;
+    line-height: 1.6;
+    font-size: 14px;
+}
+
+.learn-more {
+    color: #00ffff;
+    text-decoration: none;
+    font-weight: 600;
+    display: inline-flex;
+    align-items: center;
+    gap: 5px;
+    transition: all 0.3s;
+    text-shadow: 0 0 5px rgba(0, 255, 255, 0.5);
+    padding: 10px 20px;
+    border: 2px solid #00ffff;
+    border-radius: 25px;
+    background: rgba(0, 255, 255, 0.1);
+}
+
+.learn-more:hover {
+    gap: 10px;
+    color: #ff00ff;
+    text-shadow: 0 0 5px rgba(255, 0, 255, 0.5);
+    border-color: #ff00ff;
+    background: rgba(255, 0, 255, 0.1);
+    transform: scale(1.05);
+}
+
+/* Hover Effects */
+.product-card:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 20px 50px rgba(0, 255, 255, 0.3);
+    border-color: rgba(0, 255, 255, 0.6);
+}
+
+/* Product-specific styling */
+.product-card.playbox {
+    border-color: #4CAF50;
+}
+
+.product-card.playbox::before {
+    background: linear-gradient(90deg, #4CAF50, #45a049);
+}
+
+.product-card.playbox:hover {
+    box-shadow: 0 20px 50px rgba(76, 175, 80, 0.3);
+    border-color: rgba(76, 175, 80, 0.6);
+}
+
+.product-card.club {
+    border-color: #00ffff;
+}
+
+.product-card.garage {
+    border-color: #ff00ff;
+}
+
+.product-card.garage::before {
+    background: linear-gradient(90deg, #ff00ff, #ff69b4);
+}
+
+.product-card.garage:hover {
+    box-shadow: 0 20px 50px rgba(255, 0, 255, 0.3);
+    border-color: rgba(255, 0, 255, 0.6);
+}
+
+/* Custom SVG Icons using CSS */
+.icon-playbox {
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Cdefs%3E%3ClinearGradient id='grad1' x1='0%25' y1='0%25' x2='100%25' y2='100%25'%3E%3Cstop offset='0%25' style='stop-color:%234CAF50;stop-opacity:1' /%3E%3Cstop offset='100%25' style='stop-color:%2345a049;stop-opacity:1' /%3E%3C/linearGradient%3E%3C/defs%3E%3Crect x='20' y='25' width='60' height='45' rx='8' fill='url(%23grad1)' stroke='%23ffffff' stroke-width='2'/%3E%3Crect x='25' y='30' width='15' height='15' rx='3' fill='%23ffffff' opacity='0.8'/%3E%3Crect x='45' y='30' width='15' height='15' rx='3' fill='%23ffffff' opacity='0.8'/%3E%3Crect x='65' y='30' width='10' height='25' rx='3' fill='%23ffffff' opacity='0.8'/%3E%3Cpath d='M30 75 Q35 70 40 75 Q45 80 50 75 Q55 70 60 75 Q65 80 70 75' stroke='%234CAF50' stroke-width='3' fill='none' opacity='0.6'/%3E%3C/svg%3E");
+    color: #4CAF50;
+}
+
+.icon-club {
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Cdefs%3E%3ClinearGradient id='grad2' x1='0%25' y1='0%25' x2='100%25' y2='100%25'%3E%3Cstop offset='0%25' style='stop-color:%2300ffff;stop-opacity:1' /%3E%3Cstop offset='100%25' style='stop-color:%230099cc;stop-opacity:1' /%3E%3C/linearGradient%3E%3C/defs%3E%3Ccircle cx='50' cy='45' r='25' fill='url(%23grad2)' stroke='%23ffffff' stroke-width='2'/%3E%3Cpath d='M35 35 L50 20 L65 35' stroke='%23ffffff' stroke-width='3' fill='none' stroke-linecap='round'/%3E%3Cpath d='M50 20 L50 70' stroke='%23ffffff' stroke-width='3' stroke-linecap='round'/%3E%3Cpath d='M40 55 L50 45 L60 55' stroke='%23ffffff' stroke-width='2' fill='none' stroke-linecap='round'/%3E%3Ccircle cx='35' cy='75' r='4' fill='%2300ffff' opacity='0.7'/%3E%3Ccircle cx='50' cy='80' r='3' fill='%2300ffff' opacity='0.7'/%3E%3Ccircle cx='65' cy='75' r='4' fill='%2300ffff' opacity='0.7'/%3E%3C/svg%3E");
+    color: #00ffff;
+}
+
+.icon-garage {
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Cdefs%3E%3ClinearGradient id='grad3' x1='0%25' y1='0%25' x2='100%25' y2='100%25'%3E%3Cstop offset='0%25' style='stop-color:%23ff00ff;stop-opacity:1' /%3E%3Cstop offset='100%25' style='stop-color:%23cc0099;stop-opacity:1' /%3E%3C/linearGradient%3E%3C/defs%3E%3Crect x='25' y='35' width='50' height='40' rx='5' fill='url(%23grad3)' stroke='%23ffffff' stroke-width='2'/%3E%3Crect x='30' y='25' width='40' height='15' rx='3' fill='%23ffffff' opacity='0.9'/%3E%3Ccircle cx='38' cy='32' r='3' fill='%23ff00ff'/%3E%3Ccircle cx='50' cy='32' r='3' fill='%23ff00ff'/%3E%3Ccircle cx='62' cy='32' r='3' fill='%23ff00ff'/%3E%3Crect x='35' y='45' width='8' height='8' rx='2' fill='%23ffffff' opacity='0.8'/%3E%3Crect x='46' y='45' width='8' height='8' rx='2' fill='%23ffffff' opacity='0.8'/%3E%3Crect x='57' y='45' width='8' height='8' rx='2' fill='%23ffffff' opacity='0.8'/%3E%3Cpath d='M35 60 L40 65 L45 60 L50 65 L55 60 L60 65 L65 60' stroke='%23ffffff' stroke-width='2' fill='none' stroke-linecap='round'/%3E%3C/svg%3E");
+    color: #ff00ff;
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+    .products-grid {
+        grid-template-columns: 1fr;
+        gap: 20px;
+    }
+    
+    .product-card {
+        height: 300px;
+    }
+    
+    .product-card-front .product-icon {
+        width: 80px;
+        height: 80px;
+    }
+    
+    .product-card-front h3 {
+        font-size: 24px;
+    }
+}
 
         /* What We Offer Section */
         .programs-section {
@@ -1528,6 +1733,619 @@
             background: white;
             transform: scale(1.3);
             box-shadow: 0 0 15px rgba(255, 255, 255, 0.5);
+        }
+
+        /* Build Skills That Will Last A Lifetime Section */
+        .lifetime-skills-section-enhanced {
+            background: linear-gradient(135deg, #0a0a0a 0%, #16213e 50%, #1a4b3a 100%);
+            position: relative;
+            overflow: hidden;
+            padding: 120px 0;
+            min-height: 100vh;
+        }
+
+        .lifetime-skills-section-enhanced::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><defs><pattern id="techSkillsGrid" width="20" height="20" patternUnits="userSpaceOnUse"><path d="M 20 0 L 0 0 0 20" fill="none" stroke="rgba(0,255,255,0.08)" stroke-width="0.5"/></pattern></defs><rect width="100" height="100" fill="url(%23techSkillsGrid)"/></svg>');
+            opacity: 0.6;
+        }
+
+        /* Floating Tech Elements */
+        .floating-tech-elements {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            overflow: hidden;
+        }
+
+        .tech-particle {
+            position: absolute;
+            width: 4px;
+            height: 4px;
+            background: #00ffff;
+            border-radius: 50%;
+            box-shadow: 0 0 10px currentColor;
+            animation: techParticleFloat 6s ease-in-out infinite;
+        }
+
+        .tech-particle:nth-child(1) {
+            top: 10%;
+            left: 10%;
+            animation-delay: 0s;
+            background: #00ffff;
+        }
+
+        .tech-particle:nth-child(2) {
+            top: 20%;
+            right: 15%;
+            animation-delay: 2s;
+            background: #ff00ff;
+        }
+
+        .tech-particle:nth-child(3) {
+            bottom: 30%;
+            left: 20%;
+            animation-delay: 4s;
+            background: #00ff88;
+        }
+
+        .tech-particle:nth-child(4) {
+            bottom: 15%;
+            right: 25%;
+            animation-delay: 1s;
+            background: #ffff00;
+        }
+
+        .tech-particle:nth-child(5) {
+            top: 50%;
+            left: 5%;
+            animation-delay: 3s;
+            background: #ff6b35;
+        }
+
+        .tech-particle:nth-child(6) {
+            top: 70%;
+            right: 10%;
+            animation-delay: 5s;
+            background: #4285f4;
+        }
+
+        @keyframes techParticleFloat {
+            0%, 100% { 
+                transform: translateY(0px) rotate(0deg) scale(1);
+                opacity: 0.6;
+            }
+            33% { 
+                transform: translateY(-30px) rotate(120deg) scale(1.5);
+                opacity: 1;
+            }
+            66% { 
+                transform: translateY(-15px) rotate(240deg) scale(0.8);
+                opacity: 0.8;
+            }
+        }
+
+        /* Mission Statement Header */
+        .mission-header {
+            text-align: center;
+            margin-bottom: 80px;
+            position: relative;
+        }
+
+        .mission-header::before {
+            content: '💡';
+            position: absolute;
+            top: -30px;
+            left: 50%;
+            transform: translateX(-50%);
+            font-size: 40px;
+            filter: drop-shadow(0 0 20px #ffff00);
+            animation: lightbulbGlow 3s ease-in-out infinite;
+        }
+
+        @keyframes lightbulbGlow {
+            0%, 100% { 
+                filter: drop-shadow(0 0 20px #ffff00);
+                transform: translateX(-50%) scale(1);
+            }
+            50% { 
+                filter: drop-shadow(0 0 40px #ffff00);
+                transform: translateX(-50%) scale(1.1);
+            }
+        }
+
+        .mission-title {
+            font-size: clamp(32px, 5vw, 48px);
+            font-weight: 800;
+            color: #ffffff;
+            margin: 20px 0;
+            line-height: 1.2;
+            text-shadow: 0 0 30px rgba(0, 255, 255, 0.3);
+        }
+
+        .highlight-innovator {
+            background: linear-gradient(135deg, #00ffff 0%, #ff00ff 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            position: relative;
+            text-decoration: none;
+        }
+
+        .highlight-innovator::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            right: 0;
+            height: 3px;
+            background: linear-gradient(135deg, #00ffff 0%, #ff00ff 100%);
+            border-radius: 2px;
+            animation: underlineGlow 2s ease-in-out infinite;
+        }
+
+        @keyframes underlineGlow {
+            0%, 100% { 
+                box-shadow: 0 0 10px rgba(0, 255, 255, 0.5);
+                transform: scaleX(1);
+            }
+            50% { 
+                box-shadow: 0 0 20px rgba(255, 0, 255, 0.8);
+                transform: scaleX(1.05);
+            }
+        }
+
+        .mission-subtitle {
+            font-size: clamp(16px, 3vw, 20px);
+            color: rgba(255, 255, 255, 0.8);
+            max-width: 800px;
+            margin: 0 auto;
+            line-height: 1.6;
+        }
+
+        /* Feature Cards Carousel */
+        .feature-cards-carousel {
+            position: relative;
+            margin-bottom: 80px;
+        }
+
+        .carousel-container {
+            overflow: hidden;
+            position: relative;
+            height: 650px;
+        }
+
+        .carousel-track {
+            display: flex;
+            gap: 30px;
+            transition: transform 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+            padding: 20px 0;
+        }
+
+        .feature-card {
+            min-width: 400px;
+            min-height: 500px;
+            background: rgba(255, 255, 255, 0.05);
+            backdrop-filter: blur(20px);
+            border-radius: 25px;
+            overflow: hidden;
+            position: relative;
+            transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+            cursor: pointer;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.1);
+            opacity: 0.7;
+            transform: scale(0.9);
+            display: flex;
+            flex-direction: column;
+        }
+
+        .feature-card:hover {
+            transform: translateY(-15px) scale(1.02);
+            box-shadow: 0 30px 60px rgba(0, 0, 0, 0.3);
+            border-color: rgba(0, 255, 255, 0.3);
+        }
+
+        .feature-card.center {
+            opacity: 1;
+            transform: scale(1);
+        }
+
+        .feature-card.center:hover {
+            transform: translateY(-15px) scale(1.05);
+        }
+
+        .featured-card {
+            position: relative;
+        }
+
+        .featured-card::before {
+            content: '';
+            position: absolute;
+            top: -2px;
+            left: -2px;
+            right: -2px;
+            bottom: -2px;
+            background: linear-gradient(45deg, #00ffff, #ff00ff, #00ff88, #ffff00);
+            background-size: 300% 300%;
+            border-radius: 27px;
+            z-index: -1;
+            animation: holographicBorder 3s ease-in-out infinite;
+        }
+
+        @keyframes holographicBorder {
+            0%, 100% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+        }
+
+        .card-header {
+            height: 50px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            overflow: hidden;
+            flex-shrink: 0;
+        }
+
+        .card-header.blue { background: linear-gradient(135deg, #4285f4 0%, #1976d2 100%); }
+        .card-header.orange { background: linear-gradient(135deg, #ff6b35 0%, #f7931e 100%); }
+        .card-header.yellow { background: linear-gradient(135deg, #ffeb3b 0%, #ffc107 100%); }
+        .card-header.green { background: linear-gradient(135deg, #00ff88 0%, #00c853 100%); }
+        .card-header.purple { background: linear-gradient(135deg, #9c27b0 0%, #673ab7 100%); }
+
+        .card-header::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.3), transparent);
+            transition: left 0.6s ease;
+        }
+
+        .feature-card:hover .card-header::before {
+            left: 100%;
+        }
+
+        .card-header h3 {
+            font-size: 16px;
+            font-weight: 700;
+            color: #ffffff;
+            text-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
+            z-index: 2;
+            position: relative;
+            text-align: center;
+            line-height: 1.2;
+        }
+
+        .card-image-container {
+            position: relative;
+            height: 160px;
+            overflow: hidden;
+            background: #1a1a1a;
+            flex-shrink: 0;
+        }
+
+        .card-image {
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(135deg, #2a2a2a 0%, #3a3a3a 100%);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: transform 0.5s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .image-placeholder {
+            position: relative;
+            z-index: 2;
+        }
+
+        .image-icon {
+            font-size: 64px;
+            display: block;
+        }
+
+        .tech-grid-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 50 50"><defs><pattern id="cardGrid" width="5" height="5" patternUnits="userSpaceOnUse"><path d="M 5 0 L 0 0 0 5" fill="none" stroke="rgba(0,255,255,0.1)" stroke-width="0.3"/></pattern></defs><rect width="50" height="50" fill="url(%23cardGrid)"/></svg>');
+            opacity: 0.5;
+        }
+
+        .feature-card:hover .card-image {
+            transform: scale(1.1);
+        }
+
+        .play-button-overlay {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 80px;
+            height: 80px;
+            background: rgba(0, 255, 255, 0.9);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            backdrop-filter: blur(10px);
+            border: 3px solid rgba(255, 255, 255, 0.3);
+            box-shadow: 0 0 30px rgba(0, 255, 255, 0.6);
+            z-index: 5;
+        }
+
+        .play-icon {
+            font-size: 32px;
+            color: #000;
+            margin-left: 4px;
+        }
+
+        .play-button-overlay:hover {
+            transform: translate(-50%, -50%) scale(1.2);
+            box-shadow: 0 0 50px rgba(0, 255, 255, 0.8);
+        }
+
+        .play-button-overlay::before {
+            content: '';
+            position: absolute;
+            width: 100px;
+            height: 100px;
+            border: 2px solid rgba(0, 255, 255, 0.4);
+            border-radius: 50%;
+            animation: playButtonPulse 2s infinite;
+        }
+
+        @keyframes playButtonPulse {
+            0% { transform: scale(1); opacity: 1; }
+            100% { transform: scale(1.5); opacity: 0; }
+        }
+
+        .card-content {
+            padding: 25px;
+            position: relative;
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+        }
+
+        .card-title {
+            font-size: 20px;
+            font-weight: 800;
+            color: #ffffff;
+            margin-bottom: 12px;
+            text-shadow: 0 0 15px rgba(0, 255, 255, 0.3);
+            line-height: 1.3;
+        }
+
+        .card-description {
+            font-size: 15px;
+            color: rgba(255, 255, 255, 0.8);
+            line-height: 1.5;
+            margin-bottom: 20px;
+        }
+
+        .card-features {
+            display: flex;
+            gap: 10px;
+            flex-wrap: wrap;
+        }
+
+        .feature-tag {
+            background: rgba(0, 255, 255, 0.15);
+            border: 1px solid rgba(0, 255, 255, 0.3);
+            padding: 6px 14px;
+            border-radius: 15px;
+            font-size: 12px;
+            font-weight: 600;
+            color: #00ffff;
+            backdrop-filter: blur(10px);
+            box-shadow: 0 0 10px rgba(0, 255, 255, 0.2);
+        }
+
+        /* Carousel Navigation */
+        .carousel-nav {
+            position: absolute;
+            top: 50%;
+            width: 100%;
+            display: flex;
+            justify-content: space-between;
+            z-index: 20;
+            pointer-events: none;
+        }
+
+        .carousel-btn {
+            background: rgba(0, 255, 255, 0.2);
+            border: 2px solid rgba(0, 255, 255, 0.4);
+            color: #00ffff;
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            font-size: 24px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            backdrop-filter: blur(10px);
+            pointer-events: all;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .carousel-btn:hover {
+            background: rgba(0, 255, 255, 0.4);
+            transform: scale(1.1);
+            box-shadow: 0 0 20px rgba(0, 255, 255, 0.5);
+        }
+
+        .carousel-btn:disabled {
+            opacity: 0.3;
+            cursor: not-allowed;
+        }
+
+        .carousel-btn:disabled:hover {
+            transform: none;
+            box-shadow: none;
+        }
+
+        /* Carousel Dots */
+        .carousel-dots {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+            margin-top: 40px;
+        }
+
+        .carousel-dot {
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+            border: 2px solid rgba(0, 255, 255, 0.4);
+            background: transparent;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .carousel-dot.active {
+            background: #00ffff;
+            box-shadow: 0 0 15px rgba(0, 255, 255, 0.6);
+        }
+
+        .carousel-dot:hover {
+            transform: scale(1.2);
+        }
+
+        /* Call to Action */
+        .lifetime-skills-cta {
+            text-align: center;
+            margin-top: 60px;
+        }
+
+        .cta-button-enhanced {
+            background: linear-gradient(135deg, #00ffff 0%, #ff00ff 100%);
+            color: #000;
+            border: none;
+            padding: 18px 40px;
+            border-radius: 30px;
+            font-weight: 700;
+            font-size: 18px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            box-shadow: 0 0 40px rgba(0, 255, 255, 0.3);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .cta-button-enhanced::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.4), transparent);
+            transition: left 0.5s ease;
+        }
+
+        .cta-button-enhanced:hover {
+            transform: translateY(-5px) scale(1.05);
+            box-shadow: 0 20px 60px rgba(0, 255, 255, 0.5);
+        }
+
+        .cta-button-enhanced:hover::before {
+            left: 100%;
+        }
+
+        /* Bouncing Decorative Elements */
+        .bouncing-element {
+            position: absolute;
+            animation: bounce 3s ease-in-out infinite;
+            font-size: 24px;
+            z-index: 5;
+        }
+
+        .bouncing-element:nth-child(1) {
+            top: 15%;
+            left: 8%;
+            animation-delay: 0s;
+        }
+
+        .bouncing-element:nth-child(2) {
+            top: 25%;
+            right: 12%;
+            font-size: 28px;
+            animation-delay: 1s;
+        }
+
+        .bouncing-element:nth-child(3) {
+            bottom: 20%;
+            left: 15%;
+            font-size: 20px;
+            animation-delay: 2s;
+        }
+
+        @keyframes bounce {
+            0%, 100% { 
+                transform: translateY(0px) rotate(0deg);
+                filter: drop-shadow(0 0 10px currentColor);
+            }
+            50% { 
+                transform: translateY(-20px) rotate(10deg);
+                filter: drop-shadow(0 0 20px currentColor);
+            }
+        }
+
+            @media (max-width: 768px) {
+            .feature-card {
+                min-width: 320px;
+            }
+            
+            .carousel-container {
+                height: 520px;
+            }
+            
+            .mission-title {
+                font-size: 28px;
+            }
+            
+            .mission-subtitle {
+                font-size: 16px;
+            }
+            
+            .bouncing-element {
+                display: none;
+            }
+            
+            .lifetime-skills-section-enhanced {
+                padding: 80px 0;
+            }
+            
+            .card-content {
+                padding: 20px;
+            }
+            
+            .card-description {
+                font-size: 14px;
+            }
         }
        
         
@@ -2463,7 +3281,7 @@
     </section> -->
 
         <!-- Products Section -->
-        <section class="section" id="products">
+        <!-- <section class="section" id="products">
             <div class="container">
                 <h2 class="section-title fade-in">Programs for all ages</h2>
                 <div class="products-grid">
@@ -2490,7 +3308,76 @@
                     </div>
                 </div>
             </div>
-        </section>
+        </section> -->
+
+
+<!-- Products Section -->
+<section class="section" id="products">
+    <div class="container">
+        <h2 class="section-title fade-in">Programs for all ages</h2>
+        <div class="products-grid">
+            <div class="product-card playbox fade-in">
+                <div class="product-card-inner">
+                    <!-- Front Side (Minimal Info) -->
+                    <div class="product-card-front">
+                        <span class="age-badge">Ages 5-12</span>
+                        <div class="product-icon icon-playbox"></div>
+                        <h3>Innoyan Playbox</h3>
+                    </div>
+                    
+                    <!-- Back Side (Full Info) -->
+                    <div class="product-card-back">
+                        <span class="age-badge">Ages 5-12</span>
+                        <div class="product-icon icon-playbox"></div>
+                        <h3>Innoyan Playbox</h3>
+                        <p>Monthly hands-on STEAM projects that spark curiosity and build foundational skills through play-based learning.</p>
+                        <a href="innoyanplaybox.html" class="learn-more">Explore →</a>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="product-card club fade-in">
+                <div class="product-card-inner">
+                    <!-- Front Side (Minimal Info) -->
+                    <div class="product-card-front">
+                        <span class="age-badge">Ages 13-18</span>
+                        <div class="product-icon icon-club"></div>
+                        <h3>Club Innoyan</h3>
+                    </div>
+                    
+                    <!-- Back Side (Full Info) -->
+                    <div class="product-card-back">
+                        <span class="age-badge">Ages 13-18</span>
+                        <div class="product-icon icon-club"></div>
+                        <h3>Club Innoyan</h3>
+                        <p>Real-world projects, global mentors, and powerful portfolios for students ready to create and innovate.</p>
+                        <a href="innoyanclub" class="learn-more">Explore →</a>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="product-card garage fade-in">
+                <div class="product-card-inner">
+                    <!-- Front Side (Minimal Info) -->
+                    <div class="product-card-front">
+                        <span class="age-badge">Ages 18-25</span>
+                        <div class="product-icon icon-garage"></div>
+                        <h3>Innoyan Garage</h3>
+                    </div>
+                    
+                    <!-- Back Side (Full Info) -->
+                    <div class="product-card-back">
+                        <span class="age-badge">Ages 18-25</span>
+                        <div class="product-icon icon-garage"></div>
+                        <h3>Innoyan Garage</h3>
+                        <p>Build ventures before you graduate. Turn college into a launchpad for real products and companies.</p>
+                        <a href="innoyangarage" class="learn-more">Explore →</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
 
     <!-- Products Section
     <section class="section" id="products">
@@ -2524,10 +3411,10 @@
 
 
 
-    <!-- What The Future Demands Section -->
-    <section class="section future-section">
+    <!-- Why Innoyan Exists Section -->
+    <!-- <section class="section future-section">
         <div class="container">
-            <h2 class="section-title fade-in">What The Future Demands</h2>
+            <h2 class="section-title fade-in">Why Innoyan Exists/h2>
             <p class="section-subtitle fade-in">The world your child will enter is not the world you grew up in.</p>
             
             <div class="future-grid">
@@ -2552,14 +3439,18 @@
                 </div>
             </div>
         </div>
-    </section>
+    </section> -->
 
-        <!-- Why Innoyan Exists Section - 3D Carousel -->
+
+
+
+
+        <!-- What Future Demands - 3D Carousel -->
         <section class="why-innoyan" id="why-innoyan">
             <div class="container">
                 <div class="why-header fade-in">
                     <h2 class="why-title">
-                        <span WhaT class="highlight"> Future</span>  Demands!
+                        What <span  class="highlight"> Future</span>  Demands!
                     </h2>
                     <p class="why-subtitle">The world your child will enter is not the world you grew up in.</p>
                 </div>
@@ -2678,7 +3569,235 @@
                 </div>
             </div>
         </section>
+
+            <!-- WWhy Innoyan Exists Section -->
+    <section class="section future-section">
+        <div class="container">
+            <h2 class="section-title fade-in">Why Innoyan Exists>
+            <p class="section-subtitle fade-in">The world your child will enter is not the world you grew up in.</p>
+            
+            <div class="future-grid">
+                <div class="future-card fade-in">
+                    <h3>The Future Belongs To Builders</h3>
+                    <p>AI and automation will replace basic skills — but innovators will imagine, create, and lead the future.</p>
+                </div>
+                
+                <div class="future-card fade-in">
+                    <h3>Degrees Alone Aren't Enough</h3>
+                    <p>Top universities and companies no longer ask what they scored — they ask: What have you built?</p>
+                </div>
+                
+                <div class="future-card fade-in">
+                    <h3>Real-World Skills Create Leaders</h3>
+                    <p>Problem-solving, creativity, leadership, and innovation open global opportunities.</p>
+                </div>
+                
+                <div class="future-card fade-in">
+                    <h3>Confidence Comes From Creation</h3>
+                    <p>When kids build real projects, they gain clarity, confidence, and real-world readiness — early.</p>
+                </div>
+            </div>
+        </div>
+    </section>
     
+        <!-- Why Innoyan Exists Section -->
+    <!-- <section class="section future-section">
+        <div class="container">
+            <h2 class="section-title fade-in">Why Innoyan Exists/h2>
+            <p class="section-subtitle fade-in">The world your child will enter is not the world you grew up in.</p>
+            
+            <div class="future-grid">
+                <div class="future-card fade-in">
+                    <h3>The Future Belongs To Builders</h3>
+                    <p>AI and automation will replace basic skills — but innovators will imagine, create, and lead the future.</p>
+                </div>
+                
+                <div class="future-card fade-in">
+                    <h3>Degrees Alone Aren't Enough</h3>
+                    <p>Top universities and companies no longer ask what they scored — they ask: What have you built?</p>
+                </div>
+                
+                <div class="future-card fade-in">
+                    <h3>Real-World Skills Create Leaders</h3>
+                    <p>Problem-solving, creativity, leadership, and innovation open global opportunities.</p>
+                </div>
+                
+                <div class="future-card fade-in">
+                    <h3>Confidence Comes From Creation</h3>
+                    <p>When kids build real projects, they gain clarity, confidence, and real-world readiness — early.</p>
+                </div>
+            </div>
+        </div>
+    </section> -->
+
+    <!-- Build Skills That Will Last A Lifetime Section -->
+    <section class="lifetime-skills-section-enhanced" id="lifetime-skills-enhanced">
+        <!-- Floating Tech Elements -->
+        <div class="floating-tech-elements">
+            <div class="tech-particle"></div>
+            <div class="tech-particle"></div>
+            <div class="tech-particle"></div>
+            <div class="tech-particle"></div>
+            <div class="tech-particle"></div>
+            <div class="tech-particle"></div>
+        </div>
+
+        <!-- Bouncing Decorative Elements -->
+        <div class="bouncing-element" style="color: #00ffff;">⚙️</div>
+        <div class="bouncing-element" style="color: #ff00ff;">🚀</div>
+        <div class="bouncing-element" style="color: #00ff88;">🔬</div>
+
+        <div class="container">
+            <!-- Mission Statement Header -->
+            <div class="mission-header">
+                <h2 class="mission-title">
+                    Why <span class="highlight-innovator">Innoyan</span> Exists
+                </h2>
+                <p class="mission-subtitle">
+                    <strong>Because the world will belong to those who know how to build it.</strong>
+                </p>
+            </div>
+
+            <!-- Feature Cards Carousel -->
+            <div class="feature-cards-carousel">
+                <!-- Carousel Navigation -->
+                <div class="carousel-nav">
+                    <button class="carousel-btn" id="skillsPrevBtn">‹</button>
+                    <button class="carousel-btn" id="skillsNextBtn">›</button>
+                </div>
+
+                <!-- Carousel Container -->
+                <div class="carousel-container">
+                    <div class="carousel-track" id="skillsCarouselTrack">
+                        <!-- We're Not Another Classroom Card -->
+                        <div class="feature-card" data-index="0">
+                            <div class="card-header blue">
+                                <h3>We're Not Another Classroom</h3>
+                            </div>
+                            <div class="card-image-container">
+                                <div class="card-image">
+                                    <div class="image-placeholder">
+                                        <span class="image-icon">🎯</span>
+                                        <div class="tech-grid-overlay"></div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="card-content">
+                                <h4 class="card-title">Real-World Experience</h4>
+                                <p class="card-description">
+                                    Good grades alone are no longer enough. Innoyan gives students the real-world experience of building, solving, and creating — not just studying.
+                                </p>
+                                <div class="card-features">
+                                    <span class="feature-tag">Hands-On</span>
+                                    <span class="feature-tag">Real Projects</span>
+                                    <span class="feature-tag">Beyond Grades</span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- A Launchpad for Builders Card -->
+                        <div class="feature-card featured-card" data-index="1">
+                            <div class="card-header orange">
+                                <h3>A Launchpad for Builders</h3>
+                            </div>
+                            <div class="card-image-container">
+                                <div class="card-image">
+                                    <div class="image-placeholder">
+                                        <span class="image-icon">🎯</span>
+                                        <div class="tech-grid-overlay"></div>
+                                    </div>
+                                    <div class="play-button-overlay">
+                                        <div class="play-icon">▶</div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="card-content">
+                                <h4 class="card-title">Opening New Horizons</h4>
+                                <p class="card-description">
+                                    We open horizons. Students learn to see problems as opportunities, turn ideas into solutions, and build what the future needs.
+                                </p>
+                                <div class="card-features">
+                                    <span class="feature-tag">Problem Solving</span>
+                                    <span class="feature-tag">Innovation</span>
+                                    <span class="feature-tag">Future Ready</span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Guided By Mentors Card -->
+                        <div class="feature-card" data-index="2">
+                            <div class="card-header yellow">
+                                <h3>Guided By Mentors Who've Done It</h3>
+                            </div>
+                            <div class="card-image-container">
+                                <div class="card-image">
+                                    <div class="image-placeholder">
+                                        <span class="image-icon">🎯</span>
+                                        <div class="tech-grid-overlay"></div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="card-content">
+                                <h4 class="card-title">Expert Mentorship</h4>
+                                <p class="card-description">
+                                    IIT, IIM, and global university alumni mentor every student — bringing real-world experience, not just academic theory.
+                                </p>
+                                <div class="card-features">
+                                    <span class="feature-tag">IIT Alumni</span>
+                                    <span class="feature-tag">IIM Alumni</span>
+                                    <span class="feature-tag">Global Experience</span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Helping Students Discover Their Edge Card -->
+                        <div class="feature-card" data-index="3">
+                            <div class="card-header green">
+                                <h3>Helping Students Discover Their Edge</h3>
+                            </div>
+                            <div class="card-image-container">
+                                <div class="card-image">
+                                    <div class="image-placeholder">
+                                        <span class="image-icon">🎯</span>
+                                        <div class="tech-grid-overlay"></div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="card-content">
+                                <h4 class="card-title">Competitive Advantage</h4>
+                                <p class="card-description">
+                                    Students build real projects, pitch ideas, collaborate, and develop skills that make them globally competitive for universities, companies, and ventures.
+                                </p>
+                                <div class="card-features">
+                                    <span class="feature-tag">Real Projects</span>
+                                    <span class="feature-tag">Pitching</span>
+                                    <span class="feature-tag">Global Competence</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Carousel Dots -->
+                <div class="carousel-dots">
+                    <button class="carousel-dot active" data-slide="0"></button>
+                    <button class="carousel-dot" data-slide="1"></button>
+                    <button class="carousel-dot" data-slide="2"></button>
+                    <button class="carousel-dot" data-slide="3"></button>
+                </div>
+            </div>
+
+            <!-- Call to Action -->
+            <div class="lifetime-skills-cta">
+                <button class="cta-button-enhanced">
+                    Join the Builders
+                </button>
+            </div>
+        </div>
+    </section>
+
+
+
 
 
     <!-- Final CTA Section -->
@@ -3475,6 +4594,146 @@
             const successOverlay = document.getElementById('successOverlay');
             console.log('Success overlay found:', !!successOverlay);
         });
+
+
+                // Skills carousel - separate from main carousel
+        let skillsCurrentSlide = 0;
+        const skillsTotalSlides = 4;
+
+        function updateSkillsCarousel() {
+            const track = document.getElementById('skillsCarouselTrack');
+            const cards = document.querySelectorAll('.feature-card');
+            const dots = document.querySelectorAll('.carousel-dot[data-slide]');
+            const prevBtn = document.getElementById('skillsPrevBtn');
+            const nextBtn = document.getElementById('skillsNextBtn');
+            
+            if (!track) return; // Exit if track element doesn't exist
+            
+            // Calculate position for 3-card view centered
+            const cardWidth = window.innerWidth <= 768 ? 350 : 430; // card + gap
+            const containerWidth = track.parentElement.offsetWidth;
+            const offset = (containerWidth - cardWidth) / 2;
+            const translateX = -skillsCurrentSlide * cardWidth + offset;
+            
+            track.style.transform = `translateX(${translateX}px)`;
+            
+            // Update card states - only if cards exist
+            if (cards.length > 0) {
+                cards.forEach((card, index) => {
+                    card.classList.remove('center');
+                    if (index === skillsCurrentSlide) {
+                        card.classList.add('center');
+                    }
+                });
+            }
+            
+            // Update dots - only if dots exist
+            if (dots.length > 0) {
+                dots.forEach((dot, index) => {
+                    dot.classList.toggle('active', index === skillsCurrentSlide);
+                });
+            }
+            
+            // Update buttons - only if buttons exist
+            if (prevBtn) {
+                prevBtn.disabled = skillsCurrentSlide === 0;
+            }
+            if (nextBtn) {
+                nextBtn.disabled = skillsCurrentSlide === skillsTotalSlides - 1;
+            }
+        }
+
+        function skillsPrevSlide() {
+            if (skillsCurrentSlide > 0) {
+                skillsCurrentSlide--;
+                updateSkillsCarousel();
+            }
+        }
+
+        function skillsNextSlide() {
+            if (skillsCurrentSlide < skillsTotalSlides - 1) {
+                skillsCurrentSlide++;
+                updateSkillsCarousel();
+            }
+        }
+
+        function goToSkillsSlide(index) {
+            skillsCurrentSlide = index;
+            updateSkillsCarousel();
+        }
+
+        // Initialize skills carousel when page loads
+        document.addEventListener('DOMContentLoaded', function() {
+            // Wait for existing page initialization to complete
+            setTimeout(() => {
+                const track = document.getElementById('skillsCarouselTrack');
+                
+                // Only initialize if the skills carousel exists
+                if (track) {
+                    updateSkillsCarousel();
+                    
+                    // Button events
+                    const prevBtn = document.getElementById('skillsPrevBtn');
+                    const nextBtn = document.getElementById('skillsNextBtn');
+                    
+                    if (prevBtn) {
+                        prevBtn.onclick = skillsPrevSlide;
+                    }
+                    if (nextBtn) {
+                        nextBtn.onclick = skillsNextSlide;
+                    }
+                    
+                    // Dot events - look for dots with data-slide attribute
+                    const dots = document.querySelectorAll('.carousel-dot[data-slide]');
+                    if (dots.length > 0) {
+                        dots.forEach((dot, index) => {
+                            dot.onclick = () => goToSkillsSlide(index);
+                        });
+                    }
+                    
+                    // Auto-play carousel
+                    setInterval(() => {
+                        skillsCurrentSlide = (skillsCurrentSlide + 1) % skillsTotalSlides;
+                        updateSkillsCarousel();
+                    }, 4000);
+                }
+                
+                // Play button - independent of carousel
+                const playBtn = document.querySelector('.play-button-overlay');
+                if (playBtn) {
+                    playBtn.onclick = function() {
+                        console.log('Play video');
+                        this.style.transform = 'translate(-50%, -50%) scale(0.8)';
+                        setTimeout(() => {
+                            this.style.transform = 'translate(-50%, -50%) scale(1)';
+                        }, 200);
+                    };
+                }
+                
+                // CTA button - independent of carousel
+                const ctaBtn = document.querySelector('.cta-button-enhanced');
+                if (ctaBtn) {
+                    ctaBtn.onclick = function() {
+                        console.log('CTA clicked');
+                        this.style.transform = 'translateY(-8px) scale(0.98)';
+                        setTimeout(() => {
+                            this.style.transform = 'translateY(-8px) scale(1.05)';
+                        }, 150);
+                    };
+                }
+                
+            }, 500); // Increased delay to let existing scripts run first
+        });
+
+        // Handle resize for skills carousel only
+        window.addEventListener('resize', function() {
+            const track = document.getElementById('skillsCarouselTrack');
+            if (track) {
+                updateSkillsCarousel();
+            }
+        });
+
+
     </script>
 </body>
 </html>
